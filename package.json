@@ -1,0 +1,61 @@
+{
+  "name": "esa.ne",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "ajax-form": "^2.1.4",
+    "animate": "^1.0.0",
+    "bootstrap": "^5.2.3",
+    "bundle": "^2.1.0",
+    "firebase": "^9.17.2",
+    "imagesloaded": "^5.0.0",
+    "ionicons": "^6.1.3",
+    "isotope": "^1.0.0-alpha.3",
+    "jquery": "^3.6.3",
+    "jquery.fancybox": "^2.1.5",
+    "metismenu": "^3.0.7",
+    "modernizr": "^3.12.0",
+    "owl.carousel": "^2.3.4",
+    "range": "^0.0.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-devtools": "^4.27.2",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.8.2",
+    "react-router-dom": "^6.8.2",
+    "react-scripts": "^5.0.1",
+    "slick": "^1.12.2",
+    "slider": "^1.0.4",
+    "ui": "^0.2.4",
+    "waypoints": "^4.0.1",
+    "web-vitals": "^2.1.4",
+    "wow": "^0.0.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
