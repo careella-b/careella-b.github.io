@@ -1,5 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import { Homepage, PageNotFound, Footer, Header, BlogPage } from "./components/index.js";
+import {
+    Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
+    DemandsPage, MissionPage,
+    Footer, Header, ScrollUpButton
+} from "./components/index.js";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -32,7 +36,17 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path="*" element={<PageNotFound />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/about-us/team" element={<TeamPage />} />
+              <Route path="/about-us/our-demands" element={<DemandsPage />} />
+              <Route path="/about-us/mission-statement" element={<MissionPage />} />
+              <Route path="/cart" element={<CartPage />} />
           </Routes>
+          <ScrollUpButton />
           <Footer />
              
       </div>

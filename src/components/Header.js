@@ -13,9 +13,11 @@ import '../styles/header.css';
  * 
  */
 
+//TODO: display account drop down only if logged in (conditional rendering). otherwise display log in / sign up buttons
+
 function Header() {
 
-    var cartTotal = "(0)";
+    var cartTotal = "(0)"; //TODO: get cart total from cart
 
     return (
         <Navbar id="header-sticky" className="header__area grey-bg navbar-dark align-items-center">
@@ -23,7 +25,7 @@ function Header() {
                 <a href="javascript:void(0);" className="mobile-menu-toggle"><i className="fas fa-bars"></i></a>
             </div>
 
-            <Navbar.Brand className="container logo col-xl-2 col-lg-2 col-md-3 col-sm-3 justify-content-center " href="#">
+            <Navbar.Brand className="container logo col-xl-2 col-lg-2 col-md-3 col-sm-3 justify-content-center " href="/">
                 <img
                     src={process.env.PUBLIC_URL + '/assets/img/logo/esa--primary-logo.png'}
                     width="60%"
@@ -31,7 +33,7 @@ function Header() {
                     alt="ESA.NE logo"
                 />
             </Navbar.Brand>
-
+            
             <Nav className="container col-xl-6 col-lg-6 col-md-5 col-sm-5 header__right p-relative d-flex justify-content-around align-items-center main-menu">
                 <Link to="/"><Nav.Link as="span">HOME</Nav.Link></Link>
                 <Link to="/events"><Nav.Link as="span">EVENTS</Nav.Link></Link>
