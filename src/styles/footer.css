@@ -1,0 +1,22 @@
+.footer-bg {
+    background-color: #000;
+}
+
+.footer__copyright p a {
+   color: #F4B908; 
+}
+
+.fa-facebook-f, .fa-instagram, .fa-twitter {
+    color: #F4B908;
+  }
+
+.fa-facebook-f:hover,
+.fa-instagram:hover,
+.fa-twitter:hover {
+    color: #fff;
+}
+
+.footer-title {
+    padding-bottom: 10px;
+    padding-left: 38px;
+}
