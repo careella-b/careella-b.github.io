@@ -15,7 +15,7 @@ function Homepage() {
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
                                     <div className="slider__content">
-                                        <h2>WELCOME TO</h2>
+                                        <h2>WELCOME TO hey</h2>
                                         <h1>ESA.NE</h1>
                                         <p>East and Southeast Asians North East</p>
                                         <a href="events.html" className="os-btn os-btn-2">View Events</a>                               
