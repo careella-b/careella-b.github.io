@@ -1,3 +1,7 @@
 .homepageBg {
     background-image: url("../../public/assets/img/slider/homepage-slider-img-1.png");
 }
+
+.blogBg {
+    background-image: url("../../public/assets/img/blog/blog-background.jpg");
+}

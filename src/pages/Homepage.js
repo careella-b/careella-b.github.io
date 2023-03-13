@@ -1,4 +1,4 @@
-import '../styles/homepage.css';
+import '../styles/bgs.css';
 /**
  * Home page displays the main homepage image
  * 
