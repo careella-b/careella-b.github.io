@@ -12,7 +12,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 /**
- * Home page displays the main homepage image
+ * Home page displays the main homepage 
  *
  */
 
@@ -29,7 +29,7 @@ function Homepage() {
                     <h2>WELCOME TO</h2>
                     <h1>ESA.NE</h1>
                     <p>East and Southeast Asians North East</p>
-                    <a href="events.html" className="os-btn os-btn-2">
+                    <a href="/events" className="os-btn os-btn-2">
                       View Events
                     </a>
                   </div>
@@ -153,7 +153,7 @@ function Homepage() {
                   mollit anim id est laborum.
                 </p>
                 <div className="text-center">
-                  <a href="contact.html" className="os-btn secondary-btn">
+                  <a href="/contact" className="os-btn secondary-btn">
                     Contact us
                   </a>
                 </div>
@@ -204,7 +204,7 @@ function Homepage() {
                   within the community.
                 </p>
                 <div className="text-center join-us-btn">
-                  <a href="contact.html" className="os-btn secondary-btn">
+                  <a href="/contact" className="os-btn secondary-btn">
                     SUBSCRIBE
                   </a>
                 </div>
