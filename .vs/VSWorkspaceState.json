@@ -3,11 +3,11 @@
     "",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\css",
     "\\src",
     "\\src\\components",
+    "\\src\\Pages",
     "\\src\\styles"
   ],
-  "SelectedNode": "\\public\\assets\\css\\bootstrap.min.css",
+  "SelectedNode": "\\src\\Pages\\CartPage.js",
   "PreviewInSolutionExplorer": false
 }
