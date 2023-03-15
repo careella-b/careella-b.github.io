@@ -3,7 +3,8 @@
     CSS INDEX
     ===================
 
-    01. Theme default CSS	
+    01. Theme default CSS
+    1.5. ALL BACKGROUNDS INC. SLIDERS, PAGE TITLES, WELCOME ETC.
     02. Header CSS	
     03. Slider CSS
     04. Introduction CSS	
@@ -103,6 +104,32 @@ button:focus {
   outline: 0;
   border: 0;
 }
+
+/*CUSTOM STYLING ADDED BY KV6002 TEAM*/
+
+.secondary-btn {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    height: 50px;
+    line-height: 46px;
+    padding: 0 42px;
+    border: 2px solid #34A57B;
+    color: #fff;
+    background: #34A57B;
+    z-index: 1;
+    font-size: 12px;
+  }
+
+  .secondary-btn:hover {
+    border: 2px solid #F4B908;
+    color: #000;
+    background: #F4B908;
+  }
+
+/*CUSTOM STYLING ADDED BY KV6002 TEAM END*/
 
 .uppercase {
   text-transform: uppercase;
@@ -957,9 +984,43 @@ p {
   transform: scale(1.05);
 }
 
+/*CUSTOM STYLING ADDED BY KV6002 TEAM*/
+
+.social-bg-colour {
+    background-color: #000;
+    padding-bottom: 70px;
+}
+
+/*----------------------------------------*/
+/*  1.5. ALL BACKGROUNDS
+/*----------------------------------------*/
+
+.homepageBg {
+    background-image: url("../img/slider/homepage-slider-img-1.png");
+}
+
+.blogBg {
+    background-image: url("../img/blog/blog-background.jpg");
+}
+
+.missionBg {
+    /*background-image: url("../img/........."); you can put an image path here*/
+    background-color: black;
+}
+
+.blackBg {
+    background-color: black;
+}
+
 /*----------------------------------------*/
 /*  02. HEADER CSS
 /*----------------------------------------*/
+
+.navIcon {
+    font-size: 22px;
+}
+/*CUSTOM STYLING ADDED BY KV6002 TEAM END*/
+
 /* logo */
 .logo {
   padding-top: 12px;
@@ -1540,6 +1601,11 @@ p {
 /*----------------------------------------*/
 /*  03. SLIDER CSS
 /*----------------------------------------*/
+
+.no-image-slider__title {
+    font-size: 50px;
+}
+
 .slider__height {
   height: 925px;
 }
@@ -1568,8 +1634,13 @@ p {
     height: 550px;
   }
 }
+
+.slider__height-no-image{
+    height: 150px;
+}
+
 .slider__height-2 {
-  height: 830px;
+    height: 830px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .slider__height-2 {
@@ -1796,9 +1867,31 @@ p {
 /*  04. INTRODUCTION & JOIN US CSS
 /*----------------------------------------*/
 .intro-bg-colour {
-  background-color: #000;
-  margin-top: -25px
+    background-color: #fff;
+    margin-top: -25px
 }
+
+.intro-title,
+.intro-text,
+.team-name {
+    color: #000 !important;
+}
+
+.intro-title {
+    padding-bottom: 30px;
+}
+
+.join-us-bg-colour {
+    background-color: #fff;
+}
+
+.join-us-title,
+.join-us-text,
+.subscribe-title,
+.subscribe-text {
+    color: #000 !important;
+}
+
 .intro-container, .join-us-container {
   padding-top: 70px;
   padding-bottom: 55px;
@@ -4112,12 +4205,30 @@ p.checkout-coupon input[type=text] {
 /*----------------------------------------*/
 /*  08. BLOG CSS START
 /*----------------------------------------*/
+
+.blog-title {
+    padding-bottom: 60px;
+    color: #fff !important;
+}
+
+.blog-bg-colour {
+    background-color: #000;
+    padding-bottom: 100px;
+}
+
+.blog-title {
+    color: #000;
+}
+
+.blog-author-name {
+    color: #fff;
+    padding-top: 30px;
+}
+
 .blog-container {
   padding-top: 70px;
 }
-.blog-title {
-  color: #000;
-}
+
 @media (max-width: 575px) {
   .blog__slider .owl-nav {
     display: none;
@@ -4858,6 +4969,9 @@ p.checkout-coupon input[type=text] {
 /*----------------------------------------*/
 /*  11. CONTACT CSS START
 /*----------------------------------------*/
+
+
+
 .contact__info h3 {
   font-size: 24px;
   font-weight: 500;
@@ -5567,6 +5681,32 @@ p.checkout-coupon input[type=text] {
 /*----------------------------------------*/
 /*  18. FOOTER CSS START
 /*----------------------------------------*/
+
+/*CUSTOM STYLING ADDED BY KV6002 TEAM*/
+
+.footer-bg {
+    background-color: #000;
+}
+.footer__copyright p a {
+    color: #F4B908;
+}
+
+.fa-facebook-f, .fa-instagram, .fa-twitter {
+    color: #F4B908;
+}
+
+.fa-facebook-f:hover,
+.fa-instagram:hover,
+.fa-twitter:hover {
+    color: #fff;
+}
+
+.footer-title {
+    padding-bottom: 10px;
+    padding-left: 38px;
+}
+/*CUSTOM STYLING ADDED BY KV6002 TEAM END*/
+
 .footer__bottom {
   border-top: 1px solid #383838;
   padding: 45px 0;

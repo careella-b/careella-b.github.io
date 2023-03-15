@@ -1,13 +1,4 @@
-import "../styles/bgs.css";
-import "../styles/homepage.css";
-import teamPicOne from "../img/team/team-img-1.jpg";
-import teamPicTwo from "../img/team/team-img-2.jpg";
-import blogPicOne from "../img/blog/blog-homepage-1.jpg";
-import blogPicTwo from "../img/blog/blog-homepage-2.jpg";
-import blogPicThree from "../img/blog/blog-homepage-3.jpg";
-import socialPicOne from "../img/social/social--1.jpg";
-import socialPicTwo from "../img/social/social--2.jpg";
-import socialPicThree from "../img/social/social--3.jpg";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -60,7 +51,7 @@ function Homepage() {
             </div>
             <div className="col text-center">
               <img
-                src={teamPicOne}
+                src={process.env.PUBLIC_URL + '/assets/img/team/team-img-1.jpg'}
                 className="img-fluid team-pic-one"
                 alt="a woman"
                 width="50%"
@@ -69,7 +60,7 @@ function Homepage() {
             </div>
             <div className="col text-center">
               <img
-                src={teamPicTwo}
+                src={process.env.PUBLIC_URL + '/assets/img/team/team-img-2.jpg'}
                 className="img-fluid team-pic-two"
                 alt="a woman"
                 width="50%"
@@ -89,7 +80,7 @@ function Homepage() {
             <Row>
               <Col>
                 <img
-                  src={blogPicOne}
+                  src={process.env.PUBLIC_URL + '/assets/img/blog/blog-homepage-1.jpg'}
                   className="img-fluid team-pic-one"
                   alt="a woman"
                 />
@@ -103,7 +94,7 @@ function Homepage() {
               </Col>
               <Col>
                 <img
-                  src={blogPicTwo}
+                  src={process.env.PUBLIC_URL + '/assets/img/blog/blog-homepage-2.jpg'}
                   className="img-fluid team-pic-one"
                   alt="a woman"
                 />
@@ -117,7 +108,7 @@ function Homepage() {
               </Col>
               <Col>
                 <img
-                  src={blogPicThree}
+                  src={process.env.PUBLIC_URL + '/assets/img/blog/blog-homepage-3.jpg'}
                   className="img-fluid team-pic-one"
                   alt="a woman"
                 />
@@ -168,21 +159,21 @@ function Homepage() {
           <Row>
             <Col>
               <img
-                src={socialPicOne}
+                src={process.env.PUBLIC_URL + '/assets/img/social/social--1.jpg'}
                 className="img-fluid team-pic-one"
                 alt="a woman"
               />
             </Col>
             <Col>
               <img
-                src={socialPicTwo}
+                src={process.env.PUBLIC_URL + '/assets/img/social/social--2.jpg'}
                 className="img-fluid team-pic-one"
                 alt="a woman"
               />
             </Col>
             <Col>
               <img
-                src={socialPicThree}
+                src={process.env.PUBLIC_URL + '/assets/img/social/social--3.jpg'}
                 className="img-fluid team-pic-one"
                 alt="a woman"
               />

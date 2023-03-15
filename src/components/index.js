@@ -16,9 +16,11 @@ import { CartPage } from '../pages/CartPage';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { ScrollUpButton } from './ScrollUpButton';
-import { BlogPosts } from './BlogPosts';
+import * as BlogPosts from './BlogPosts';
+import { NoImageSlider } from './NoImageSlider';
+import { ImageSlider } from './ImageSlider';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPosts
+    Footer, Header, ScrollUpButton, BlogPosts, NoImageSlider, ImageSlider
 };

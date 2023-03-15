@@ -1,6 +1,3 @@
-import footerLogo from "../img/logo/esa--primary-logo.png";
-import "../styles/footer.css";
-
 /**
  * Reusable footer component
  * 
@@ -16,8 +13,8 @@ function Footer() {
             <div className="col-xl-6 col-lg-6 col-md-6 col-12">
               <div className="footer__widget mb-30">
                 <div className="footer__widget-title mb-25">
-                  <a href="index.html">
-                    <img src={footerLogo} alt="logo" width="20%" />
+                  <a href="/">
+                    <img src={process.env.PUBLIC_URL + '/assets/img/logo/esa--primary-logo.png'} alt="logo" width="20%" />
                   </a>
                 </div>
                 <div className="footer__widget-content">
@@ -61,8 +58,8 @@ function Footer() {
             <div className="col">
               <div className="footer__copyright text-center">
                 <p>
-                  Copyright © <a href="index.html">ESA.NE</a> all rights
-                  reserved. Powered by <a href="index.html">ESA.NE</a>
+                  Copyright © <a href="/">ESA.NE</a> all rights
+                  reserved.
                 </p>
               </div>
             </div>

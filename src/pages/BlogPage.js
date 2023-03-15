@@ -1,4 +1,4 @@
-import '../styles/bgs.css';
+import { ImageSlider } from "../components/index.js";
 /**
  * Main blog page displays the featured blog posts and all posts with filters 
  * 
@@ -8,41 +8,14 @@ function BlogPage() {
 
     return (
 
-        <><section className="slider__area p-relative">
-                <div className="slider-active">
-                    <div className="single-slider slider__height d-flex align-items-center blogBg" >
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
-                                    <div className="slider__content">
-                                        <h2>OUR COMMUNITY</h2>
-                                        <h1>BLOG</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <><ImageSlider topText="OUR COMMUNITY" bottomText="BLOG" bgClass="blogBg" />
+
             <section className="blog__area pt-100 pb-100">
                     <div className="container">
                         <div className="row">
                             <div className="col-xl-6 col-lg-6 col-md-6">
                                 <div className="blog__wrapper">
-                                    <div className="blog__item mb-60">
-                                        <div className="blog__thumb fix">
-                                            <a href="blog-details.html" className="w-img"><img src="assets/img/blog/blog-big-2.jpg" alt="blog"></img></a>
-                                        </div>
-                                        <div className="blog__content">
-                                            <h4><a href="blog-details.html">Anteposuerit litterarum formas.</a></h4>
-                                            <div className="blog__meta">
-                                                <span>By <a href="#">Shahnewaz Sakil</a></span>
-                                                <span>/ September 14, 2017</span>
-                                            </div>
-                                            <p>A Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the [...]</p>
-                                            <a href="blog-details.html" className="os-btn">read more</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div className="blog__item mb-60">
                                         <div className="blog__thumb fix">
                                             <a href="blog-details.html" className="w-img"><img src="assets/img/blog/blog-big-3.jpg" alt="blog"></img></a>
