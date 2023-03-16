@@ -53,7 +53,7 @@ function EventsPage() {
               <div className="event-content text-center">
                 <h4 className="event-name">Red Dinner - Food and Karaoke</h4>
                 <div className="text-center">
-                  <a href="/contact" className="os-btn event-btn">
+                  <a href="/events/red-dinner" className="os-btn event-btn">
                     TICKETS & INFO
                   </a>
                 </div>
@@ -66,9 +66,9 @@ function EventsPage() {
                 alt="chilli padi logo"
               />
               <div className="event-content text-center">
-                <h4 className="event-name">November ESEAeats at Chilli Padi</h4>
+                <h4 className="event-name">Chilli Padi</h4>
                 <div className="text-center">
-                  <a href="/contact" className="os-btn event-btn">
+                  <a href="/events/chilli-padi" className="os-btn event-btn">
                     TICKETS & INFO
                   </a>
                 </div>
@@ -84,9 +84,9 @@ function EventsPage() {
                 alt="jj's cafe logo"
               />
               <div className="event-content text-center">
-                <h4 className="event-name">End of 2022 Celebration</h4>
+                <h4 className="event-name">JJ's Cafe</h4>
                 <div className="text-center">
-                  <a href="/contact" className="os-btn event-btn">
+                  <a href="/events/jj-cafe" className="os-btn event-btn">
                     TICKETS & INFO
                   </a>
                 </div>
@@ -101,7 +101,7 @@ function EventsPage() {
               <div className="event-content text-center">
                 <h4 className="event-name">North East BCS Picnic</h4>
                 <div className="text-center">
-                  <a href="/contact" className="os-btn event-btn">
+                  <a href="/events/north-east-picnic"  className="os-btn event-btn">
                     TICKETS & INFO
                   </a>
                 </div>
@@ -116,7 +116,7 @@ function EventsPage() {
               <div className="event-content text-center">
                 <h4 className="event-name">Meeple Perk - Board Games Cafe</h4>
                 <div className="text-center">
-                  <a href="/contact" className="os-btn event-btn">
+                  <a href="/events/meeple-perk" className="os-btn event-btn">
                     TICKETS & INFO
                   </a>
                 </div>

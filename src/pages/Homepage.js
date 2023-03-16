@@ -1,5 +1,7 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 /**
  * Home page displays the main homepage 
@@ -193,11 +195,13 @@ function Homepage() {
                   Subscribe to our mailing list to receive the latest news
                   within the community.
                 </p>
-                
-                <div className="text-center join-us-btn">
-                  <a href="/contact" className="os-btn secondary-btn">
-                    SUBSCRIBE
-                  </a>
+                <div className="mx-auto col-10 col-md-8 col-lg-6">
+                <Form className="text-center">
+                  <Form.Group>
+                    <Form.Control type="email" placeholder="Enter email" className="subscribe-input" />
+                  </Form.Group>
+                  <Button className="os-btn secondary-btn mt-3" type="submit">SUBSCRIBE</Button>
+                </Form>
                 </div>
               </div>
             </div>

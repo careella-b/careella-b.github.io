@@ -14,7 +14,7 @@ import Form from 'react-bootstrap/Form';
  *
  */
 
-function LunarNewYear() {
+function RedDinner() {
   const [event, setEvent] = useState([]);
 
   const fetchPost = async () => {
@@ -58,7 +58,7 @@ function LunarNewYear() {
           <Row className="event-row-1">
             <Col>
               <img
-                src={process.env.PUBLIC_URL + "/assets/img/events/event--1.jpg"}
+                src={process.env.PUBLIC_URL + "/assets/img/events/event--2.jpg"}
                 className="img-fluid"
                 alt="china town"
               />
@@ -162,4 +162,4 @@ function LunarNewYear() {
   );
 }
 
-export { LunarNewYear };
+export { RedDinner };
