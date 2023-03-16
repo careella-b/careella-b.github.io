@@ -36,7 +36,7 @@ function BlogPage() {
                                 <div className="blog__wrapper">
                                 <div>
                                     {posts.map((post) => (
-                                        <div key={post.id}>
+                                        <div key={post.id} className="blog__item mb-30">
                                             <h2>{post.title}</h2>
                                             <p>{post.content}</p>
                                         </div>

@@ -12,7 +12,6 @@ import { DemandsPage } from '../pages/DemandsPage';
 import { MissionPage } from '../pages/MissionPage';
 import { CartPage } from '../pages/CartPage';
 import { LunarNewYear } from '../pages/LunarNewYear';
-import { Map } from './map';
 
 
 //components
@@ -23,9 +22,9 @@ import * as BlogPost from './BlogPost';
 import { NoImageSlider } from './NoImageSlider';
 import { ImageSlider } from './ImageSlider';
 import { CreateBlogPost } from './CreateBlogPost';
-import { FetchBlogPosts } from './FetchBlogPosts';
+import { Map } from './map';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, FetchBlogPosts, LunarNewYear, Map
+    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, LunarNewYear, Map
 };
