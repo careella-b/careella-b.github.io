@@ -16,11 +16,13 @@ import { CartPage } from '../pages/CartPage';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { ScrollUpButton } from './ScrollUpButton';
-import * as BlogPosts from './BlogPosts';
+import * as BlogPost from './BlogPost';
 import { NoImageSlider } from './NoImageSlider';
 import { ImageSlider } from './ImageSlider';
+import { CreateBlogPost } from './CreateBlogPost';
+import { FetchBlogPosts } from './FetchBlogPosts';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPosts, NoImageSlider, ImageSlider
+    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, FetchBlogPosts
 };
