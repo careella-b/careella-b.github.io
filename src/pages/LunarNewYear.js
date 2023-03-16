@@ -1,6 +1,12 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Map } from "../components/index.js";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Firebase";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+
 
 /**
  * Individual event page that shows info about the event
@@ -8,6 +14,23 @@ import { Map } from "../components/index.js";
  */
 
 function LunarNewYear() {
+  const [event, setEvent] = useState([]);
+
+  const fetchPost = async () => {
+    await getDocs(collection(db, "event")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setEvent(newData);
+      console.log(event, newData);
+    });
+  };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
   return (
     <div>
       <section className="slider__area p-relative">
@@ -18,7 +41,9 @@ function LunarNewYear() {
                 <div className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
                   <div className="slider__content">
                     <h2>OUR COMMUNITY</h2>
-                    <h1>LUNAR NEW YEAR 2023</h1>
+                    {event?.map((event, i) => (
+                      <h1 key={i}>{event.event_title}</h1>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -26,7 +51,6 @@ function LunarNewYear() {
           </div>
         </div>
       </section>
-
 
       <section className="slider__area event-bg-colour">
         <div className="container events-container">
@@ -41,15 +65,40 @@ function LunarNewYear() {
             <Col>
               <div className="event-content text-center">
                 <h2 className="event-details-title">EVENT DETAILS</h2>
+
                 <div className="text-left event-details-text-container">
-                    <p className="event-details-text">DATE:</p>
-                    <p className="event-details-text">VENUE:</p>
-                    <p className="event-details-text">PRICE:</p>
-                    <p className="event-details-text">STARTS:</p>
-                    <p className="event-details-text">FINISHES:</p>
-                    <p className="event-details-text">AGE:</p>
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      DATE: {event.event_date}
+                    </p>
+                  ))}
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      VENUE: {event.venue}
+                    </p>
+                  ))}
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      PRICE: {event.price}
+                    </p>
+                  ))}
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      STARTS: {event.start_time}
+                    </p>
+                  ))}
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      FINISHES: {event.end_time}
+                    </p>
+                  ))}
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      AGE: {event.age_restriction}
+                    </p>
+                  ))}
                   <a href="/contact" className="os-btn purchase-btn">
-                    TICKETS & INFO
+                     ADD TO CART
                   </a>
                 </div>
               </div>
@@ -57,22 +106,33 @@ function LunarNewYear() {
           </Row>
 
           <Row className="event-row-2">
-            <Col>
-              <div className="event-content text-left">
-                <h2 className="event-details-title">EVENT INFORMATION</h2>
-                <div className="text-left event-info-text-container">
-                    <h4 className="event-info-text">MAP</h4>
-                    <Map />
-                </div>
-              </div>
-            </Col>
+            <div
+              style={{ display: "block", width: 700, padding: 30 }}
+              className="event-content text-left"
+            >
+              <h2 className="event-details-title">EVENT INFORMATION</h2>
+              <Tabs defaultActiveKey="second" className="mb-3">
+                <Tab eventKey="first" title="DESCRIPTION">
+                  {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      {event.event_description}
+                    </p>
+                  ))}
+                </Tab>
+                <Tab eventKey="second" title="MAP">
+                  <Map />
+                </Tab>
+                <Tab eventKey="third" title="ACCESSIBILITY">
+                {event?.map((event, i) => (
+                    <p className="event-details-text" key={i}>
+                      {event.accessibility}
+                    </p>
+                  ))}                </Tab>
+              </Tabs>
+            </div>
           </Row>
-
-
-        
         </div>
       </section>
-
 
       <section className="slider__area p-relative subscribe-bg-colour-event">
         <div className="container join-us-container">
@@ -96,9 +156,6 @@ function LunarNewYear() {
           </div>
         </div>
       </section>
-
-
-
     </div>
   );
 }

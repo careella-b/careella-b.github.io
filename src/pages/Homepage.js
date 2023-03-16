@@ -193,6 +193,7 @@ function Homepage() {
                   Subscribe to our mailing list to receive the latest news
                   within the community.
                 </p>
+                
                 <div className="text-center join-us-btn">
                   <a href="/contact" className="os-btn secondary-btn">
                     SUBSCRIBE
