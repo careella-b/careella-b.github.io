@@ -11,6 +11,9 @@ import { TeamPage } from '../pages/TeamPage';
 import { DemandsPage } from '../pages/DemandsPage';
 import { MissionPage } from '../pages/MissionPage';
 import { CartPage } from '../pages/CartPage';
+import { LunarNewYear } from '../pages/LunarNewYear';
+import { Map } from './map';
+
 
 //components
 import { Footer } from './Footer';
@@ -24,5 +27,5 @@ import { FetchBlogPosts } from './FetchBlogPosts';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, FetchBlogPosts
+    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, FetchBlogPosts, LunarNewYear, Map
 };

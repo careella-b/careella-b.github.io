@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
-    DemandsPage, MissionPage,
-    Footer, Header, ScrollUpButton
+    DemandsPage, MissionPage, 
+    Footer, Header, ScrollUpButton,
+    LunarNewYear
 } from "./components/index.js";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -45,6 +47,7 @@ function App() {
               <Route path="/about-us/our-demands" element={<DemandsPage />} />
               <Route path="/about-us/mission-statement" element={<MissionPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/events/lunar-new-year-2023" element={<LunarNewYear />} />
           </Routes>
           <ScrollUpButton />
           <Footer />

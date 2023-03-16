@@ -160,21 +160,21 @@ function Homepage() {
               <img
                 src={process.env.PUBLIC_URL + '/assets/img/social/social--1.jpg'}
                 className="img-fluid team-pic-one"
-                alt="a woman"
+                alt="a signage"
               />
             </Col>
             <Col>
               <img
                 src={process.env.PUBLIC_URL + '/assets/img/social/social--2.jpg'}
                 className="img-fluid team-pic-one"
-                alt="a woman"
+                alt="a girl holding a sign"
               />
             </Col>
             <Col>
               <img
                 src={process.env.PUBLIC_URL + '/assets/img/social/social--3.jpg'}
                 className="img-fluid team-pic-one"
-                alt="a woman"
+                alt="happy lunar new year"
               />
             </Col>
           </Row>
