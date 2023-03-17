@@ -6,8 +6,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import NumberPicker from "react-widgets/NumberPicker";
 
 /**
  * Individual event page that shows info about the event
@@ -98,6 +99,7 @@ function LunarNewYear() {
                       AGE: {event.age_restriction}
                     </p>
                   ))}
+                  <NumberPicker min={1} max={5} defaultValue={1} />;
                   <a href="/contact" className="os-btn purchase-btn">
                     ADD TO CART
                   </a>
@@ -146,12 +148,18 @@ function LunarNewYear() {
                   within the community.
                 </p>
                 <div className="mx-auto col-10 col-md-8 col-lg-6">
-                <Form className="text-center">
-                  <Form.Group>
-                    <Form.Control type="email" placeholder="Enter email" className="subscribe-input" />
-                  </Form.Group>
-                  <Button className="os-btn secondary-btn mt-3" type="submit">SUBSCRIBE</Button>
-                </Form>
+                  <Form className="text-center">
+                    <Form.Group>
+                      <Form.Control
+                        type="email"
+                        placeholder="Enter email"
+                        className="subscribe-input"
+                      />
+                    </Form.Group>
+                    <Button className="os-btn secondary-btn mt-3" type="submit">
+                      SUBSCRIBE
+                    </Button>
+                  </Form>
                 </div>
               </div>
             </div>
