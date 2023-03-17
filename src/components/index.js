@@ -18,7 +18,7 @@ import { LunarNewYear } from '../pages/LunarNewYear';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { ScrollUpButton } from './ScrollUpButton';
-import * as BlogPost from './BlogPost';
+import { BlogPost } from './BlogPost';
 import { NoImageSlider } from './NoImageSlider';
 import { ImageSlider } from './ImageSlider';
 import { CreateBlogPost } from './CreateBlogPost';
