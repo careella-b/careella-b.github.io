@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
-    DemandsPage, MissionPage, BlogPost, 
+    BlogPost, DemandsPage, MissionPage, LunarNewYear, ChilliPadi, JJCafe, MeeplePerk, NorthEastPicnic, RedDinner,
     Footer, Header, ScrollUpButton,
-    LunarNewYear
+
 } from "./components/index.js";
 
 
@@ -49,6 +49,11 @@ function App() {
               <Route path="/about-us/mission-statement" element={<MissionPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/events/lunar-new-year-2023" element={<LunarNewYear />} />
+              <Route path="/events/chilli-padi" element={<ChilliPadi />} />
+              <Route path="/events/jj-cafe" element={<JJCafe />} />
+              <Route path="/events/meeple-perk" element={<MeeplePerk />} />
+              <Route path="/events/north-east-picnic" element={<NorthEastPicnic />} />
+              <Route path="/events/red-dinner" element={<RedDinner />} />
           </Routes>
           <ScrollUpButton />
           <Footer />

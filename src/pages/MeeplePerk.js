@@ -14,7 +14,7 @@ import Form from 'react-bootstrap/Form';
  *
  */
 
-function LunarNewYear() {
+function MeeplePerk() {
   const [event, setEvent] = useState([]);
 
   const fetchPost = async () => {
@@ -162,4 +162,4 @@ function LunarNewYear() {
   );
 }
 
-export { LunarNewYear };
+export { MeeplePerk };
