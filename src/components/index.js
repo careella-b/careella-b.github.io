@@ -29,10 +29,10 @@ import { ImageSlider } from './ImageSlider';
 import { CreateBlogPost } from './CreateBlogPost';
 import { Map } from './map';
 import * as EventPost from './EventPost';
-
+import { Subscribe } from './Subscribe';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
     Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, LunarNewYear, Map, ChilliPadi, JJCafe, MeeplePerk, NorthEastPicnic,
-    RedDinner, EventPost
+    RedDinner, EventPost, Subscribe
 };

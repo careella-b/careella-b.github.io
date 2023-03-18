@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../Firebase';
 import { useParams } from 'react-router-dom';
+import { NoImageSlider } from "../components/index.js";
 
 /**
- * Blog post component fetches and renders single blog posts in full when selected from the blog page
+ * Blog post component fetches and displays the selected blog post
  * 
  */
 
