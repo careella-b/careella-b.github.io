@@ -8,7 +8,13 @@ function ContactPage() {
 
     return (
         <><NoImageSlider pageTitle="CONTACT US" bgClass="blackBg" />
+            <p>Don’t hesitate to reach out with the contact information below, or send a message using the form.
 
+                We ask that you please fill in the ‘name’ and ’email’ fields of the form below so that we can respond to your query.
+
+                However, we are trialling these fields as non-mandatory so that you can report feedback/issues to us anonymously.
+                Please do not use this contact form to send us abusive messages, we would like to keep these fields
+                optional so that people feel safe in reporting issues to us.</p>
         <section className="contact__area pb-100 pt-95">
                 <div className="container">
                     <div className="row">

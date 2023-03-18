@@ -5,9 +5,7 @@
     "\\public\\assets",
     "\\src",
     "\\src\\components",
-    "\\src\\Pages",
-    "\\src\\styles"
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\Pages\\CartPage.js",
   "PreviewInSolutionExplorer": false
 }
