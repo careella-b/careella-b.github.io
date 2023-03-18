@@ -51,7 +51,7 @@ function EventPost() {
                                 <h1>{event.event_title}</h1>
                                 <img
                                     src={event.event_image_url}
-                                    className="img-fluid"
+                                    className="img-fluid event-img"
                                     alt={event.event_title}
                                 />
                             </Col>
