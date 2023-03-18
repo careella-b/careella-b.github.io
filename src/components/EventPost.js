@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../Firebase';
+import { ref, getDownloadURL } from "firebase/storage";
+import { db, storage } from '../Firebase';
 import { useParams } from 'react-router-dom';
 import { ImageSlider, Map, Newsletter } from "../components/index.js";
 import Row from "react-bootstrap/Row";
@@ -17,15 +18,19 @@ import Tabs from "react-bootstrap/Tabs";
 function EventPost() {
     const { id } = useParams();
     const [event, setEvent] = useState(null);
+    const [eventImageURL, setEventImageURL] = useState('');
 
     useEffect(() => {
         const fetchEvent = async () => {
-            const eventDoc = await getDoc(doc(db, "events", id));
-            if (eventDoc.exists()) {
-                setEvent({ id: eventDoc.id, ...eventDoc.data() });
-            }
+        const eventDoc = await getDoc(doc(db, "events", id));
+        if (eventDoc.exists()) {
+          const eventImageRef = ref(storage, `events/${id}.jpg`);
+          const imageUrl = await getDownloadURL(eventImageRef);
+          setEventImageURL(imageUrl);
+          setEvent({ id: eventDoc.id, ...eventDoc.data(), event_image_url: imageUrl });
         }
-        fetchEvent();
+    }
+      fetchEvent();
     }, [id]);
 
     if (!event) {
@@ -45,7 +50,7 @@ function EventPost() {
                             <Col>
                                 <h1>{event.event_title}</h1>
                                 <img
-                                    src={event.event_image}
+                                    src={event.event_image_url}
                                     className="img-fluid"
                                     alt={event.event_title}
                                 />

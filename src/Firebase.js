@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -18,7 +20,9 @@ const firebaseConfig = {
     storageBucket: "esane-a07c1.appspot.com",
     messagingSenderId: "188259431399",
     appId: "1:188259431399:web:68517b4bd493c5e272c342",
-    measurementId: "G-HNZEPRW20C"
+    measurementId: "G-HNZEPRW20C",
+    storageBucket: 'gs://esane-a07c1.appspot.com/'
+
 };
 
 // Initialize Firebase
@@ -27,4 +31,8 @@ const analytics = getAnalytics(app);
 
 // Export firestore database
 export const db = getFirestore(app);
+
+// Initialize Cloud Storage and get a reference to the service
+export const storage = getStorage(app);
+
 

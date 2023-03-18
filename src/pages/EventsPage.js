@@ -1,7 +1,8 @@
 import { ImageSlider } from "../components/index.js";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../Firebase";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { db, storage } from "../Firebase";
 import { Link } from 'react-router-dom';
 
 /**
@@ -13,17 +14,20 @@ function EventsPage() {
 
   const [events, setEvents] = useState([]);
 
-    useEffect(() => {
-        const fetchEvents = async () => {
-            const querySnapshot = await getDocs(collection(db, "events"));
-            const eventsData = querySnapshot.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() };
-            });
-            setEvents(eventsData);
-            console.log(eventsData);
-        }
-        fetchEvents();
-    }, []);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      const eventsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
+        const eventData = { id: doc.id, ...doc.data() };
+        const files = await listAll(ref(storage, 'events'));
+        const eventImageFile = files.items.find(item => item.name === `${eventData.id}.jpg`);
+        const imageUrl = await getDownloadURL(eventImageFile);
+        return { ...eventData, event_image_url: imageUrl };
+      }));
+      setEvents(eventsData);
+    }
+    fetchEvents();
+  }, [storage]);
 
   return (
       <>
@@ -38,7 +42,7 @@ function EventsPage() {
                   {events.map((event) => (
                       <div className="event__wrapper col-12 col-sm-6 text-center" key={event.id}>
                           <img
-                              src={event.event_image}
+                              src={event.event_image_url}
                               className="img-fluid team-pic-one"
                               alt={event.event_title}
                           />
