@@ -62,7 +62,7 @@ function BlogPost() {
                         </div>
                     </div>
                     <div>
-                        <p className="black-color mt-30 ml-30">{post.postBody}</p>  
+                        <p className="black-color mt-110 ml-30">{post.postBody}</p>  
                     </div>
                 
             </div>

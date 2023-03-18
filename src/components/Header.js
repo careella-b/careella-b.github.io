@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+import { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -11,11 +11,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
  * 
  */
 
-//TODO: display account drop down only if logged in (conditional rendering). otherwise display log in / sign up buttons
-
 function Header() {
 
+    const [userAuth, setUserAuth] = useState(false); // state to track user's login status
+    const [isAdmin, setisAdmin] = useState(false); // state to track user's admin status
+
     var cartTotal = "(0)"; //TODO: get cart total from cart
+
+    // function to handle user logout
+    const handleLogout = () => {
+        // TODO: implement logout logic here
+        setUserAuth(false);
+    }
 
     return (
         <Navbar id="header-sticky" className="header__area grey-bg navbar-dark align-items-center">
@@ -44,21 +51,30 @@ function Header() {
                 <Link to="/contact"><Nav.Link as="span">CONTACT US</Nav.Link></Link>
             </Nav>
 
-            <Nav className="container col-xl-2 col-lg-2 col-md-3 col-sm-3 header__action">
-                <div className="d-flex justify-content-left">
-                    <i className="align-self-center fa-solid fa-circle-user navIcon"></i>
-                    <NavDropdown title="" id="basic-nav-dropdown" className="transition-3 has-dropdown">
-                        <Link to="/profile"><NavDropdown.Item className="submenu transition-3" as="span">Profile</NavDropdown.Item></Link>
-                        <Link to="/account"><NavDropdown.Item className="submenu transition-3" as="span">My Account</NavDropdown.Item></Link>
-                        <Link to="/logout"><NavDropdown.Item className="submenu transition-3" as="span">Log Out</NavDropdown.Item></Link>
-                    </NavDropdown>
-                </div>
-                <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart <span>{cartTotal}</span></Nav.Link></Link>
-            </Nav>
-
+            
+            {userAuth ? (
+                <Nav className="container col-xl-2 col-lg-2 col-md-3 col-sm-3 header__action">
+                    <div className="d-flex justify-content-left">
+                        <i className="align-self-center fa-solid fa-circle-user navIcon"></i>
+                        <NavDropdown title="" id="basic-nav-dropdown" className="transition-3 has-dropdown">
+                            {isAdmin && <Link to="/admin-portal"><NavDropdown.Item className="submenu transition-3" as="span">Admin Portal</NavDropdown.Item></Link>}
+                            <Link to="/profile"><NavDropdown.Item className="submenu transition-3" as="span">Profile</NavDropdown.Item></Link>
+                            <Link to="/account"><NavDropdown.Item className="submenu transition-3" as="span">My Account</NavDropdown.Item></Link>
+                            <Link to="/logout"><NavDropdown.Item className="submenu transition-3" onClick={handleLogout} as="span">Log Out</NavDropdown.Item></Link>
+                        </NavDropdown>
+                    </div>
+                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart <span>{cartTotal}</span></Nav.Link></Link>
+                </Nav>
+            ) : 
+                <Nav className="container col-xl-3 col-lg-3 col-md-3 col-sm-3 header__action">
+                    <div className="d-flex justify-content-left">
+                        <Link to="/login"><Nav.Link as="span">LOG IN</Nav.Link></Link>
+                        <a className="align-self-center"> | </a>
+                        <Link to="/signup"><Nav.Link as="span">SIGN UP</Nav.Link></Link>
+                    </div>
+                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart <span>{cartTotal}</span></Nav.Link></Link>
+                </Nav>}
         </Navbar>
-
-
     )
 }
 
