@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../Firebase';
 import { useParams } from 'react-router-dom';
-import { NoImageSlider, Map, Newsletter } from "../components/index.js";
+import { ImageSlider, Map, Newsletter } from "../components/index.js";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+
 
 /**
  * Event post component fetches and displays the selected event from the db
@@ -33,7 +34,11 @@ function EventPost() {
 
 
     return (
-        <><NoImageSlider pageTitle="WHAT'S ON" bgClass="blackBg" />
+          <><ImageSlider
+              topText="OUR COMMUNITY"
+              bottomText={event.event_title}
+              bgClass="homepageBg"
+          />
                 <section className="slider__area event-bg-colour">
                     <div className="container events-container">
                         <Row className="event-row-1">
@@ -51,10 +56,10 @@ function EventPost() {
                                     <div className="text-left event-details-text-container">
                                         <p className="event-details-text">DATE: {event.event_date}</p>
                                         <p className="event-details-text">VENUE: {event.venue}</p>
-                                        <p className="event-details-text">PRICE: {event.price}</p>
+                                        <p className="event-details-text">PRICE: £{event.price}</p>
                                         <p className="event-details-text">STARTS: {event.start_time}</p>
                                         <p className="event-details-text">FINISHES: {event.end_time}</p>
-                                        <p className="event-details-text">AGE: {event.age_restriction}</p>
+                                        <p className="event-details-text">AGE RESTRICTION: {event.age_restriction}</p>
                                         <a href="/cart" className="os-btn purchase-btn"> ADD TO CART</a>
                                     </div>
                                 </div>
@@ -81,6 +86,7 @@ function EventPost() {
                 <Newsletter />
            </>
         );
+        
 }
 
 export { EventPost };

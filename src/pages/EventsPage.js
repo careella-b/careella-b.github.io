@@ -1,6 +1,4 @@
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { ImageSlider, Newsletter } from "../components/index.js";
+import { ImageSlider } from "../components/index.js";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
@@ -38,7 +36,7 @@ function EventsPage() {
           <section className="slider__area events-bg-colour">
               <div className="container events-container d-flex flex-wrap">
                   {events.map((event) => (
-                      <div className="event__wrapper  mb-60 flex-grow-1" key={event.id}>
+                      <div className="event__wrapper col-12 col-sm-6 text-center" key={event.id}>
                           <img
                               src={event.event_image}
                               className="img-fluid team-pic-one"
@@ -47,7 +45,7 @@ function EventsPage() {
                           <div className="event-content text-center">
                               <Link to={`/event/${event.id}`}>
                                   <h4 className="event-name">{event.event_title}</h4>
-                                  <div className="text-center">
+                                  <div>
                                       <p className="os-btn event-btn">TICKETS & INFO</p>
                                   </div>
                               </Link>
@@ -56,7 +54,6 @@ function EventsPage() {
                   ))}
               </div>
           </section>
-        <Newsletter/>
       </>
   );
 }
