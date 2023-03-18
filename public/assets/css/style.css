@@ -272,6 +272,10 @@ p {
   background: #bc8246;
 }
 
+.yellow-bg {
+   background: #F4B908;
+}
+
 .white-bg {
   background: #ffffff;
 }
@@ -649,6 +653,10 @@ p {
 .join-us-btn {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.bw-50{
+    width:50%;
 }
 /* section title */
 .section__title {
@@ -5256,12 +5264,25 @@ p.checkout-coupon input[type=text] {
 /*  17.  LOGIN CSS START
 /*----------------------------------------*/
 .basic-login {
-  padding: 90px;
-  border: 2px solid #eaedff;
+    padding: 60px;
+    border: 2px solid #F4B908;
+}
+
+.login-box-text-small {
+    font-size: 14px;
+}
+
+.login-box-text {
+    font-size: 16px;
+}
+
+.login-box-link {
+    font-size: 18px;
+    text-decoration: underline;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .basic-login {
+    .basic-login {
     padding: 50px;
   }
 }
@@ -5280,12 +5301,12 @@ p.checkout-coupon input[type=text] {
 }
 
 .basic-login input {
-  width: 100%;
-  height: 60px;
-  border: 2px solid #eaedff;
-  color: #6f7172;
-  padding: 0 20px;
-  margin-bottom: 20px;
+    width: 100%;
+    height: 60px;
+    border: 1px solid #000;
+    color: #6f7172;
+    padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 .basic-login input::placeholder,
@@ -5313,10 +5334,10 @@ p.checkout-coupon input[type=text] {
 }
 
 .or-divide {
-  border-top: 2px solid #eaedff;
-  margin: 40px 0;
-  text-align: center;
-  position: relative;
+    border-top: 2px solid #F4B908;
+    margin: 40px 0;
+    text-align: center;
+    position: relative;
 }
 
 .or-divide span {
