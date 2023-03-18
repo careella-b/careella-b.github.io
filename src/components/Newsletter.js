@@ -8,7 +8,6 @@ import { Alert, FormControl } from "react-bootstrap";
 /**
  * Reusable newsletter component
  * 
- 
  */
 
 function Newsletter() {

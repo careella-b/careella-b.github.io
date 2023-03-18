@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
     BlogPost, DemandsPage, MissionPage, LunarNewYear, ChilliPadi, JJCafe, MeeplePerk, NorthEastPicnic, RedDinner,
-    Footer, Header, ScrollUpButton,
+    Footer, Header, ScrollUpButton, EventPost,
 
 } from "./components/index.js";
 
@@ -43,6 +43,7 @@ function App() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/events" element={<EventsPage />} />
+              <Route path="/event/:id" element={<EventPost />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/about-us/team" element={<TeamPage />} />
               <Route path="/about-us/our-demands" element={<DemandsPage />} />

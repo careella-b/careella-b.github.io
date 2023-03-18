@@ -184,8 +184,6 @@ function Homepage() {
           </Row>
         </div>
       </section>
-
-      <Subscribe/>
       <Newsletter />
     </div>
   );

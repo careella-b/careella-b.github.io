@@ -1,6 +1,6 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { ImageSlider } from "../components/index.js";
+import { ImageSlider, Newsletter } from "../components/index.js";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
@@ -48,7 +48,7 @@ function EventsPage() {
                               <Link to={`/event/${event.id}`}>
                                   <h4 className="event-name">{event.event_title}</h4>
                                   <div className="text-center">
-                                      <a className="os-btn event-btn">TICKETS & INFO</a>
+                                      <p className="os-btn event-btn">TICKETS & INFO</p>
                                   </div>
                               </Link>
                           </div>
@@ -56,6 +56,7 @@ function EventsPage() {
                   ))}
               </div>
           </section>
+        <Newsletter/>
       </>
   );
 }

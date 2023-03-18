@@ -135,7 +135,6 @@ function LunarNewYear() {
         </div>
       </section>
 
-      <Subscribe/>
       <section className="slider__area p-relative subscribe-bg-colour-event">
         <div className="container join-us-container">
           <div className="row">

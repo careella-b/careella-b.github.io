@@ -28,7 +28,7 @@ import { NoImageSlider } from './NoImageSlider';
 import { ImageSlider } from './ImageSlider';
 import { CreateBlogPost } from './CreateBlogPost';
 import { Map } from './map';
-import * as EventPost from './EventPost';
+import { EventPost } from './EventPost';
 import { Subscribe } from './Subscribe';
 import { Newsletter } from './Newsletter';
 
