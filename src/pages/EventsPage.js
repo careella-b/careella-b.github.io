@@ -43,7 +43,7 @@ function EventsPage() {
                       <div className="event__wrapper col-12 col-sm-6 text-center" key={event.id}>
                           <img
                               src={event.event_image_url}
-                              className="img-fluid team-pic-one"
+                              className="img-fluid event-img"
                               alt={event.event_title}
                           />
                           <div className="event-content text-center">
