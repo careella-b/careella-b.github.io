@@ -1095,6 +1095,24 @@ p {
   margin-bottom: 50px;
 }
 
+.rw-widget-container {
+  padding-right: 10px;
+}
+
+.rw-input {
+  padding-left: 22px;
+  width: 10%;
+}
+
+.rw-picker-btn {
+  width: 5%;
+}
+
+.rw-number-picker-spinners {
+  padding-left: 10px;
+}
+
+
 /*----------------------------------------*/
 /*  1.5. ALL BACKGROUNDS
 /*----------------------------------------*/
