@@ -43,35 +43,31 @@ function BlogPage() {
     return (
         <>
             <ImageSlider topText="OUR COMMUNITY" bottomText="BLOG" bgClass="blogBg" />
-            <section className="blog__area pt-100 pb-100">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-6 col-lg-6 col-md-6">
-                            <div className="blog__wrapper d-flex flex-wrap">
-                                {posts.map((post) => (
-                                    <div className="blog__item mb-60 flex-grow-1" key={post.id}>
-                                        <div className="blog__thumb fix">
-                                            <Link to={`/blog/${post.id}`}>
-                                                <img className="w-img" src={post.blog_image_url} alt={post.postTitle} />
-                                            </Link>
-                                        </div>
-                                        <div className="blog__content">
-                                            <Link to={`/blog/${post.id}`}>
-                                                <h4 className="black-color">{post.postTitle}</h4>
-                                            </Link>
-                                            <div className="blog__meta">
-                                                <span>By <a href="#">{post.author}</a></span>
-                                                <span> {formatDate(post.datePosted)}</span>
-                                            </div>
-                                            <p>{post.postBody}</p>
-                                            <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
-                                        </div>
+            <section className="blog__area pt-60 pb-100">
+                <h2 className="black-color text-center pb-30">Our Posts</h2>
+                <div className="container d-flex justify-content-around">
+                    
+                        {posts.map((post) => (
+                            <div className="blog__item pt-20 pr-20 justify-content-left flex-item" key={post.id}>
+                                <div className="blog__thumb fix">
+                                    <Link to={`/blog/${post.id}`}>
+                                        <img className="w-img" src={post.blog_image_url} alt={post.postTitle} />
+                                    </Link>
+                                </div>
+                                <div className="blog__content">
+                                    <Link to={`/blog/${post.id}`}>
+                                        <h4 className="black-color">{post.postTitle}</h4>
+                                    </Link>
+                                    <div className="blog__meta">
+                                        <span>By <a href="#">{post.author}</a></span>
+                                        <span><br/>{formatDate(post.datePosted)}</span>
                                     </div>
-                                ))}
+                                    <p>{post.postBody.slice(0, 256) + "..."}</p>
+                                    <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                </div>
             </section>
         </>
     )
