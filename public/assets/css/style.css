@@ -602,7 +602,7 @@ p {
   font-size: 12px;
 }
 .os-btn-5 span {
-  color: #bc8246;
+  color: #F4B908;
 }
 .os-btn-5::after {
   position: absolute;
@@ -1091,6 +1091,7 @@ p {
   box-shadow: none;
 }
 
+/* Individual event page CSS */
 .nav-tabs {
   margin-bottom: 50px;
 }
@@ -4349,6 +4350,10 @@ p.checkout-coupon input[type=text] {
 
 .blog-container {
   padding-top: 70px;
+}
+
+.blog-content {
+  padding-bottom: 20px;
 }
 
 @media (max-width: 575px) {

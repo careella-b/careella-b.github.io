@@ -41,14 +41,12 @@ function Homepage() {
               <div className="intro__content">
                 <h3 className="text-center intro-title">WHO ARE WE</h3>
                 <p className="text-center intro-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  We are a grassroots organisation of people with East and Southeast
+                  identities and heritage who formed in direct response to the
+                  increased racism that ESA people have experienced here in the UK
+                  and worldwide. We resist and oppose racism with an intersectional
+                  understanding of oppression, and we working on building a strong ESA
+                  community here in the North East England.
                 </p>
               </div>
             </div>
@@ -89,10 +87,15 @@ function Homepage() {
                 />
                 <div className="blog-content text-center">
                   <h4 className="blog-author-name">
-                    Anteposuerit litterarum formas
+                    Queer Talks
                   </h4>
-                  <span>By Shahnewaz Sakil</span>
-                  <span> - September 14, 2017</span>
+                  <span>By Ella</span>
+                  <span className="blog-date"></span>
+                </div>
+                <div className="text-center">
+                  <a href="/contact" className="os-btn os-btn-2">
+                    READ MORE
+                  </a>
                 </div>
               </Col>
               <Col>
@@ -103,10 +106,15 @@ function Homepage() {
                 />
                 <div className="blog-content text-center">
                   <h4 className="blog-author-name">
-                    Anteposuerit litterarum formas
+                    Changing the World
                   </h4>
-                  <span>By Shahnewaz Sakil</span>
-                  <span> - September 14, 2017</span>
+                  <span>By Sakil</span>
+                  <span className="blog-date"></span>
+                </div>
+                <div className="text-center">
+                  <a href="/contact" className="os-btn os-btn-2">
+                    READ MORE
+                  </a>
                 </div>
               </Col>
               <Col>
@@ -117,10 +125,15 @@ function Homepage() {
                 />
                 <div className="blog-content text-center">
                   <h4 className="blog-author-name">
-                    Anteposuerit litterarum formas
+                    Pride and Belonging
                   </h4>
-                  <span>By Shahnewaz Sakil</span>
-                  <span> - September 14, 2017</span>
+                  <span>By Shahnewaz</span>
+                  <span className="blog-date"></span>
+                </div>
+                <div className="text-center">
+                  <a href="/contact" className="os-btn os-btn-2">
+                    READ MORE
+                  </a>
                 </div>
               </Col>
             </Row>
@@ -137,14 +150,10 @@ function Homepage() {
                   JOIN OUR VOLUNTEER TEAM
                 </h3>
                 <p className="text-center join-us-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  We are looking for people to join our core organising people.
+                  Roles include but are not limited to: recruitment, wellbeing,
+                  events, social media, content creators, artists, researches,
+                  and translators.
                 </p>
                 <div className="text-center">
                   <a href="/contact" className="os-btn secondary-btn">
