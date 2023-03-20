@@ -5,10 +5,12 @@ import {
     Footer, Header, ScrollUpButton, EventPost, SignUpPage
 
 } from "./components/index.js";
+import { CartProvider } from "./CartContext.js";
 
 function App() {
   return (
       <div className="App">
+        <CartProvider>
           <Header />
           
           <Routes>
@@ -30,7 +32,7 @@ function App() {
           </Routes>
           <ScrollUpButton />
           <Footer />
-             
+        </CartProvider>
       </div>
   );
 }

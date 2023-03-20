@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { CartContext } from "../CartContext";
+import { useContext } from "react";
 
 /**
  * Header component
@@ -16,13 +18,14 @@ function Header() {
     const [userAuth, setUserAuth] = useState(false); // state to track user's login status
     const [isAdmin, setisAdmin] = useState(false); // state to track user's admin status
 
-    var cartTotal = "(0)"; //TODO: get cart total from cart
-
     // function to handle user logout
     const handleLogout = () => {
         // TODO: implement logout logic here
         setUserAuth(false);
     }
+
+    const cart = useContext(CartContext);
+    const totalInCart = cart.getTotalInCart();
 
     return (
         <Navbar id="header-sticky" className="header__area grey-bg navbar-dark align-items-center">
@@ -63,7 +66,7 @@ function Header() {
                             <Link to="/logout"><NavDropdown.Item className="submenu transition-3" onClick={handleLogout} as="span">Log Out</NavDropdown.Item></Link>
                         </NavDropdown>
                     </div>
-                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart <span>{cartTotal}</span></Nav.Link></Link>
+                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart (<span>{totalInCart}</span>)</Nav.Link></Link>
                 </Nav>
             ) : 
                 <Nav className="container col-xl-3 col-lg-3 col-md-3 col-sm-3 header__action">
@@ -72,7 +75,7 @@ function Header() {
                         <a className="align-self-center"> | </a>
                         <Link to="/signup"><Nav.Link as="span">SIGN UP</Nav.Link></Link>
                     </div>
-                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart <span>{cartTotal}</span></Nav.Link></Link>
+                    <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart (<span>{totalInCart}</span>)</Nav.Link></Link>
                 </Nav>}
         </Navbar>
     )

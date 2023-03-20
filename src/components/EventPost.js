@@ -8,6 +8,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import { CartContext } from "../CartContext";
+import { useContext } from "react";
 
 
 /**
@@ -16,6 +18,7 @@ import Tabs from "react-bootstrap/Tabs";
  */
 
 function EventPost() {
+    const cart = useContext(CartContext);
     const { id } = useParams();
     const [event, setEvent] = useState(null);
     const [eventImageURL, setEventImageURL] = useState('');
@@ -37,6 +40,9 @@ function EventPost() {
         return null; // or display a loading spinner
     }
 
+    const eventQuantity = cart.getEventQuantity(event.id);
+    console.log(eventQuantity);
+    console.log(cart.items);
 
     return (
           <><ImageSlider
@@ -65,7 +71,7 @@ function EventPost() {
                                         <p className="event-details-text">STARTS: {event.start_time}</p>
                                         <p className="event-details-text">FINISHES: {event.end_time}</p>
                                         <p className="event-details-text">AGE RESTRICTION: {event.age_restriction}</p>
-                                        <a href="/cart" className="os-btn purchase-btn"> ADD TO CART</a>
+                                        <button onClick={() => cart.addOneToCart(event.id)} className="os-btn purchase-btn"> ADD TO CART</button>
                                     </div>
                                 </div>
                             </Col>
