@@ -10,7 +10,6 @@ import { CartProvider } from "./CartContext.js";
 function App() {
   return (
       <div className="App">
-        <CartProvider>
           <Header />
           
           <Routes>
@@ -32,7 +31,6 @@ function App() {
           </Routes>
           <ScrollUpButton />
           <Footer />
-        </CartProvider>
       </div>
   );
 }

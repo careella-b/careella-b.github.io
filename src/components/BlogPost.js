@@ -12,46 +12,53 @@ import { NoImageSlider } from "../components/index.js";
 
 function BlogPost() {
     const { id } = useParams();
-    const [post, setPost] = useState(null);
+    const [thisPost, setThisPost] = useState(null);
+    const [allPosts, setAllPosts] = useState([]);
     const [postImageURL, setPostImageURL] = useState('');
-    const location = useLocation();
-    const { posts } = location.state;
-
-    const { id } = useParams();
-    const posts = props.location.state.posts;
-    const post = posts.find((post) => post.id === id);
 
     useEffect(() => {
+        const fetchPosts = async () => {
+            const querySnapshot = await getDocs(collection(db, "blogPosts"));
+            const postsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
+                const data = { id: doc.id, ...doc.data() };
+                const files = await listAll(ref(storage, 'blog'));
+                const blogImageFile = files.items.find(item => item.name === `${doc.id}.jpg`);
+                const imageUrl = await getDownloadURL(blogImageFile);
+                return { ...data, blog_image_url: imageUrl };
+            }));
+            setAllPosts(postsData);
+        };
+
         const fetchPost = async () => {
             const postDoc = await getDoc(doc(db, "blogPosts", id));
             if (postDoc.exists()) {
-                const postImageRef = ref(storage, `blog/${id}.jpg`);
-                const imageUrl = await getDownloadURL(postImageRef);
-                setPostImageURL(imageUrl);
-                setPost({ id: postDoc.id, ...postDoc.data(), post_image_url: imageUrl });
+                const postData = { id: postDoc.id, ...postDoc.data() };
+                const files = await listAll(ref(storage, 'blog'));
+                const blogImageFile = files.items.find(item => item.name === `${id}.jpg`);
+                const imageUrl = await getDownloadURL(blogImageFile);
+                setThisPost({ ...postData, blog_image_url: imageUrl });
             }
-        }        
+        };
+
+        fetchPosts();
         fetchPost();
     }, [id]);
 
-    if (!post) {
+    if (!thisPost) {
         return null; // or display a loading spinner
     }
 
     function formatDate(timestamp) {
-
         const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
-
         const dateString = date.toLocaleDateString("en-GB", {
             year: "numeric",
             month: "long",
             day: "numeric"
         });
-
         return dateString;
     }
 
-    
+    const suggestedPosts = allPosts.filter(post => post.id !== id);
 
     return (
         <section className="blog__area pt-5 pb-5">
@@ -59,53 +66,48 @@ function BlogPost() {
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="postbox__title mb-4">
-                            <h2 className="black-color">{post.postTitle}</h2>
+                            <h2 className="black-color">{thisPost.postTitle}</h2>
                             <div className="blog__meta">
-                                <span>By <a href="#">{post.author}</a></span>
-                                <span>{formatDate(post.datePosted)}</span>
+                                <span>By <a href="#">{thisPost.author}</a></span><br/>
+                                <span> {formatDate(thisPost.datePosted)}</span>
                             </div>
                         </div>
                         <div className="postbox__details-img mb-4">
-                            <img src={post.post_image_url} alt={post.postTitle} className="img-fluid" />
+                            <img src={thisPost.blog_image_url} alt={thisPost.postTitle} className="img-fluid" />
                         </div>
                         <div className="postbox__details mb-4">
-                            <p className="black-color">{post.postBody}</p>
+                            <p className="black-color">{thisPost.postBody}</p>
                         </div>
                     </div>
-                    <div className="col-lg-4 card-header">
-                        <h3>Suggested Posts</h3>
-                        {posts.map((post) => (
-                            <div key={post.id} className="card mb-4">
-                                <ul className="list-group list-group-flush">
-                                    <div className="blog__thumb fix">
-                                        <Link to={{
-                                            pathname: `/blog/${post.id}`,
-                                            state: { posts }
-                                        }}>
-                                            <img className="w-img" src={post.blog_image_url} alt={post.postTitle} />
-                                        </Link>
-                                    </div>
-                                    <div className="list-group-item" key={post.id}>
-                                        <Link to={{
-                                            pathname: `/blog/${post.id}`,
-                                            state: { posts }
-                                        }}>
-                                            <h5 className="black-color">{post.postTitle}</h5>
-                                        </Link>
-                                        <Link to={{
-                                            pathname: `/blog/${post.id}`,
-                                            state: { posts }
-                                        }} className="os-btn">read more</Link>
-                                    </div>
-                                </ul>
-                            </div>
+                    <div className="sidebar__widget mb-55">
+                        <div className="sidebar__widget-title mb-25">
+                            <h3 className="black-color">Latest Posts</h3>
+                        </div>
+                        {suggestedPosts.map((post) => (
+                            <div className="sidebar__widget-content" key={post.id}>
+                                <div className="rc__post-wrapper">
+                                    <ul>
+                                        <li className="">
+                                            <div className="rc__post-thumb mr-20 ">
+                                                <Link to={`/blog/${post.id}`}><img className="w-img" src={post.blog_image_url} alt={post.postTitle} /></Link>
+                                            </div>
+                                            <div className="rc__post-content">
+                                                <h6>
+                                                    <Link to={`/blog/${post.id}`}><h5 className="black-color">{post.postTitle}</h5></Link>
+                                                </h6>
+                                                <div className="rc__meta">
+                                                    <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>                        
                         ))}
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
-
-
     );
 }
 
