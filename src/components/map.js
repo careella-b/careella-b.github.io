@@ -1,5 +1,4 @@
-import { useMemo } from 'react'
-import { GoogleMap, useLoadScript, Marker, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '1000px',
@@ -23,7 +22,8 @@ function Map() {
         options={{gestureHandling: "greedy"}}
         mapContainerStyle={containerStyle}
       >
-        <Marker position={center} />
+        <Marker
+          position={center} />
       </GoogleMap>
     </LoadScript>
   )
