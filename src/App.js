@@ -10,8 +10,8 @@ import { CartProvider } from "./CartContext.js";
 function App() {
   return (
       <div className="App">
+        <CartProvider>
           <Header />
-          
           <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="*" element={<PageNotFound />} />
@@ -31,6 +31,7 @@ function App() {
           </Routes>
           <ScrollUpButton />
           <Footer />
+          </CartProvider>
       </div>
   );
 }
