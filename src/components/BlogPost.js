@@ -79,17 +79,17 @@ function BlogPost() {
                             <p className="black-color">{thisPost.postBody}</p>
                         </div>
                     </div>
-                    <div className="sidebar__widget mb-55">
+                    <div className="sidebar__widget mb-55 d-flex flex-column align-items-center">
                         <div className="sidebar__widget-title mb-25">
                             <h3 className="black-color">Latest Posts</h3>
                         </div>
                         {suggestedPosts.map((post) => (
-                            <div className="sidebar__widget-content" key={post.id}>
-                                <div className="rc__post-wrapper">
-                                    <ul>
-                                        <li className="">
-                                            <div className="rc__post-thumb mr-20 ">
-                                                <Link to={`/blog/${post.id}`}><img className="w-img" src={post.blog_image_url} alt={post.postTitle} /></Link>
+                            <div className="sidebar__widget-content d-flex flex-column align-items-center" key={post.id}>
+                                <div className="rc__post-wrapper d-flex flex-column align-items-center">
+                                    <ul className="d-flex flex-column align-items-center">
+                                        <li className="d-flex flex-column align-items-center">
+                                            <div className="rc__post-thumb d-flex flex-column align-items-center">
+                                                <Link to={`/blog/${post.id}`}><img className="w-img banner__item-3 d-flex flex-column align-items-center" src={post.blog_image_url} alt={post.postTitle} /></Link>
                                             </div>
                                             <div className="rc__post-content">
                                                 <h6>
