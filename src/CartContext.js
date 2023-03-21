@@ -13,7 +13,8 @@ export const CartContext = createContext({
 })
 
 export function CartProvider({children}) {
-    const [cartEvents, setCartEvents] = useState(localStorage.cart ? JSON.parse(localStorage.cart):[]);
+
+    const [cartEvents, setCartEvents] = useState(localStorage.cart ? JSON.parse(localStorage.cart) : []);
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
