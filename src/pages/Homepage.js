@@ -1,6 +1,5 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Subscribe } from "../components/index.js";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Newsletter } from "../components";

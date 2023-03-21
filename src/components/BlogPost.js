@@ -85,15 +85,15 @@ function BlogPost() {
                         </div>
                         {suggestedPosts.map((post) => (
                             <div className="sidebar__widget-content d-flex flex-column align-items-center" key={post.id}>
-                                <div className="rc__post-wrapper d-flex flex-column align-items-center">
-                                    <ul className="d-flex flex-column align-items-center">
-                                        <li className="d-flex flex-column align-items-center">
-                                            <div className="rc__post-thumb d-flex flex-column align-items-center">
-                                                <Link to={`/blog/${post.id}`}><img className="w-img banner__item-3 d-flex flex-column align-items-center" src={post.blog_image_url} alt={post.postTitle} /></Link>
+                                <div className="rc__post-wrapper">
+                                    <ul>
+                                        <li>
+                                            <div className="rc__post-thumb">
+                                                <Link className="rc__post-thumb d-flex flex-column align-items-center"  to={`/blog/${post.id}`}><img className="w-img banner__item-3 d-flex flex-column align-items-center pt-10 pb-10" src={post.blog_image_url} alt={post.postTitle} /></Link>
                                             </div>
-                                            <div className="rc__post-content">
+                                            <div className="rc__post-content d-flex flex-column align-items-center">
                                                 <h6>
-                                                    <Link to={`/blog/${post.id}`}><h5 className="black-color">{post.postTitle}</h5></Link>
+                                                    <Link to={`/blog/${post.id}`}><h5 className="black-color pt-10 pb-10">{post.postTitle}</h5></Link>
                                                 </h6>
                                                 <div className="rc__meta">
                                                     <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>

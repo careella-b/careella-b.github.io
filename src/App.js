@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
-    BlogPost, DemandsPage, MissionPage, 
+    BlogPost, DemandsPage, MissionPage, AdminPage,
     Footer, Header, ScrollUpButton, EventPost, SignUpPage
 
 } from "./components/index.js";
@@ -28,6 +28,7 @@ function App() {
               <Route path="/about-us/our-demands" element={<DemandsPage />} />
               <Route path="/about-us/mission-statement" element={<MissionPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/admin" element={<AdminPage />} />
           </Routes>
           <ScrollUpButton />
           <Footer />
