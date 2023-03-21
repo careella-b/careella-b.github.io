@@ -50,12 +50,20 @@ function BlogPage() {
                         {posts.map((post) => (
                             <div className="blog__item pt-20 pr-20 justify-content-left flex-item" key={post.id}>
                                 <div className="blog__thumb fix">
-                                    <Link to={`/blog/${post.id}`}>
+                                    <Link to={{
+                                        pathname: `/blog/${post.id}`,
+                                        state: { posts }
+                                    }}>
                                         <img className="w-img" src={post.blog_image_url} alt={post.postTitle} />
                                     </Link>
                                 </div>
                                 <div className="blog__content">
-                                    <Link to={`/blog/${post.id}`}>
+                                    <Link
+                                        to={{
+                                            pathname: `/blog/${post.id}`,
+                                            state: { posts }
+                                        }}
+                                    >
                                         <h4 className="black-color">{post.postTitle}</h4>
                                     </Link>
                                     <div className="blog__meta">
@@ -63,7 +71,10 @@ function BlogPage() {
                                         <span><br/>{formatDate(post.datePosted)}</span>
                                     </div>
                                     <p>{post.postBody.slice(0, 256) + "..."}</p>
-                                    <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
+                                    <Link to={{
+                                        pathname: `/blog/${post.id}`,
+                                        state: { posts }
+                                    }} className="os-btn">read more</Link>
                                 </div>
                             </div>
                         ))}
