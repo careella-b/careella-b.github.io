@@ -125,9 +125,9 @@ button:focus {
   }
 
   .secondary-btn:hover {
-    border: 2px solid #F4B908;
+    border: 2px solid #000;
     color: #000;
-    background: #F4B908;
+    background: #fff;
   }
 
 /*CUSTOM STYLING ADDED BY KV6002 TEAM END*/

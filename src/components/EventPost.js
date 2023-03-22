@@ -71,7 +71,7 @@ function EventPost() {
                                         <p className="event-details-text">STARTS: {event.start_time}</p>
                                         <p className="event-details-text">FINISHES: {event.end_time}</p>
                                         <p className="event-details-text">AGE RESTRICTION: {event.age_restriction}</p>
-                                        <button onClick={() => cart.addOneToCart(event.id)} className="os-btn purchase-btn"> ADD TO CART</button>
+                                        <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn"> ADD TO CART</button>
                                     </div>
                                 </div>
                             </Col>

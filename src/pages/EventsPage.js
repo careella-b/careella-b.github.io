@@ -50,7 +50,7 @@ function EventsPage() {
                               <Link to={`/event/${event.id}`}>
                                   <h4 className="event-name">{event.event_title}</h4>
                                   <div>
-                                      <p className="os-btn event-btn">TICKETS & INFO</p>
+                                      <p className="secondary-btn">TICKETS & INFO</p>
                                   </div>
                               </Link>
                           </div>

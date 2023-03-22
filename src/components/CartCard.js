@@ -61,14 +61,14 @@ function CartCard(props) {
                             <Col className="cart-col">
                                 <Row className="cart-btn-row">
                                     <div className="text-center">
-                                            <button onClick={() => cart.addOneToCart(event.id)} className="os-btn cart-btn"> +</button>
+                                            <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn cart-btn"> +</button>
                                             <input value={eventQuantity} type="number" id="typeNumber" className="form-control cart-quantity" />
-                                            <button onClick={() => cart.removeOneFromCart(event.id)} className="os-btn cart-btn"> -</button>
+                                            <button onClick={() => cart.removeOneFromCart(event.id)} className="secondary-btn cart-btn"> -</button>
                                     </div>
                                 </Row>
                                 <Row className="cart-btn-row">
                                         <div>
-                                            <button onClick={() => cart.deleteFromCart(event.id)} className="os-btn cart-btn-del"><i className="fas fa-trash-alt"></i></button>
+                                            <button onClick={() => cart.deleteFromCart(event.id)} className="secondary-btn cart-btn-del"><i className="fas fa-trash-alt"></i></button>
                                         </div>
                                 </Row>
                                         <p className="cart-total">SUB-TOTAL : £{(event.price*eventQuantity).toFixed(2)}</p>
