@@ -12,7 +12,6 @@ import { TeamPage } from '../pages/TeamPage';
 import { DemandsPage } from '../pages/DemandsPage';
 import { MissionPage } from '../pages/MissionPage';
 import { CartPage } from '../pages/CartPage';
-import { AdminPage } from '../pages/AdminPage';
 
 
 //components
@@ -26,11 +25,17 @@ import { CreateBlogPost } from './CreateBlogPost';
 import { Map } from './map';
 import { EventPost } from './EventPost';
 import { Newsletter } from './Newsletter';
-import { AdminSidebar } from './AdminSidebar';
-import { AdminMain } from './AdminMain';
+
+
+//admin
+import { AdminSidebar } from './admin/AdminSidebar';
+import { AdminDashboard } from '../pages/admin/AdminDashboard';
+import { ManageAccountsPage } from '../pages/admin/ManageAccountsPage';
+import { ManageBlogPage } from '../pages/admin/ManageBlogPage';
+import { ManageEventsPage } from '../pages/admin/ManageEventsPage';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, Map, EventPost, Newsletter, SignUpPage, AdminPage, AdminSidebar,
-    AdminMain
+    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, Map, EventPost, Newsletter, SignUpPage, AdminSidebar,
+    AdminDashboard, ManageAccountsPage, ManageBlogPage, ManageEventsPage
 };
