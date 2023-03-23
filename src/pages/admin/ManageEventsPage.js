@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -11,6 +11,8 @@ function ManageEventsPage() {
     const [events, setEvents] = useState([]);
     const [sortOption, setSortOption] = useState("date");
     const [sortOrder, setSortOrder] = useState("asc");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -50,7 +52,26 @@ function ManageEventsPage() {
         }
     };
 
-    
+    const addEvent = async () => {
+        // navigate to the add post page
+        navigate("/admin/events/add");
+    }
+
+    const editEvent = async (eventId) => {
+        // navigate to the edit post page with the post id
+        navigate(`/admin/events/edit/${eventId}`);
+    }
+
+    const deleteEvent = async (eventId) => {
+        try {
+            // delete the post from the database
+            await deleteDoc(doc(db, "events", eventId));
+            // remove the post from the local state
+            setEvents(events.filter(event => eventId !== eventId));
+        } catch (error) {
+            console.error("Error removing entry: ", error);
+        }
+    }
 
     return (
         <div className="pl-50 pr-50 pt-50">
@@ -82,7 +103,7 @@ function ManageEventsPage() {
                         <option value="desc">Descending</option>
                     </select>
                 </div>
-                <button className="os-btn-5">
+                <button className="os-btn-5" onClick={() => addEvent()}>
                     + Add Event
                 </button>
             </div>
@@ -123,14 +144,14 @@ function ManageEventsPage() {
                                         <OverlayTrigger
                                             placement="bottom"
                                             overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
-                                            <Link to={`/admin/events/edit/${event.id}`} className="os-btn-4 mr-2">
+                                            <Link to={`/admin/events/edit/${event.id}`} className="os-btn-4 mr-2" onClick={() => editEvent(event.id)}>
                                                 <FontAwesomeIcon icon={faPenToSquare} />
                                             </Link>
                                         </OverlayTrigger>
 
                                         <OverlayTrigger
                                             placement="bottom"
-                                            overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
+                                            overlay={<Tooltip id="tooltip-top">Delete</Tooltip>} onClick={() => deleteEvent(event.id)}>
                                             <button className="os-btn-warning">
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>

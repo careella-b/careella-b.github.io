@@ -47,7 +47,7 @@ function AddBlogPost() {
             const docRef = await addDoc(collection(db, "blogPosts"), {
                 postTitle,
                 postBody,
-                categoryId: selectedCategoryId,
+                category_id: selectedCategoryId,
                 datePosted: serverTimestamp(),
                 author,
             });

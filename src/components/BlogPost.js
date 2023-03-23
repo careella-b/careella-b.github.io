@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, doc as firestoreDoc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { db, storage } from '../Firebase';
 import { useParams, Link, useLocation } from 'react-router-dom';
@@ -21,22 +21,44 @@ function BlogPost() {
             const querySnapshot = await getDocs(collection(db, "blogPosts"));
             const postsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
                 const data = { id: doc.id, ...doc.data() };
+                let imageUrl = null;
                 const files = await listAll(ref(storage, 'blog'));
                 const blogImageFile = files.items.find(item => item.name === `${doc.id}.jpg`);
-                const imageUrl = await getDownloadURL(blogImageFile);
-                return { ...data, blog_image_url: imageUrl };
+                if (blogImageFile) {
+                    imageUrl = await getDownloadURL(blogImageFile);
+                } else {
+                    imageUrl = process.env.PUBLIC_URL + "/assets/img/blog/default.jpg";
+                }
+                const categoryRef = doc.data().category_id;
+                let categoryData = null;
+                if (categoryRef) {
+                    const categoryDoc = await getDoc(firestoreDoc(db, "category", categoryRef));
+                    categoryData = { id: categoryDoc.id, category: categoryDoc.data().category };
+                }
+                return { ...data, blog_image_url: imageUrl, category: categoryData.category };
             }));
             setAllPosts(postsData);
         };
 
         const fetchPost = async () => {
-            const postDoc = await getDoc(doc(db, "blogPosts", id));
+            const postDoc = await getDoc(firestoreDoc(db, "blogPosts", id));
             if (postDoc.exists()) {
                 const postData = { id: postDoc.id, ...postDoc.data() };
+                let imageUrl = null;
                 const files = await listAll(ref(storage, 'blog'));
                 const blogImageFile = files.items.find(item => item.name === `${id}.jpg`);
-                const imageUrl = await getDownloadURL(blogImageFile);
-                setThisPost({ ...postData, blog_image_url: imageUrl });
+                if (blogImageFile) {
+                    imageUrl = await getDownloadURL(blogImageFile);
+                } else {
+                    imageUrl = process.env.PUBLIC_URL + "/assets/img/blog/default.jpg";
+                }
+                const categoryRef = postDoc.data().category_id;
+                let categoryData = null;
+                if (categoryRef) {
+                    const categoryDoc = await getDoc(firestoreDoc(db, "category", categoryRef));
+                    categoryData = { id: categoryDoc.id, category: categoryDoc.data().category };
+                }
+                setThisPost({ ...postData, blog_image_url: imageUrl, category: categoryData.category });
             }
         };
 
@@ -96,6 +118,7 @@ function BlogPost() {
                                                     <Link to={`/blog/${post.id}`}><h5 className="black-color pt-10 pb-10">{post.postTitle}</h5></Link>
                                                 </h6>
                                                 <div className="rc__meta">
+                                                    <span><a href="#">{post.category ? post.category : ''}</a></span>
                                                     <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
                                                 </div>
                                             </div>
