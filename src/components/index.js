@@ -21,7 +21,6 @@ import { ScrollUpButton } from './ScrollUpButton';
 import { BlogPost } from './BlogPost';
 import { NoImageSlider } from './NoImageSlider';
 import { ImageSlider } from './ImageSlider';
-import { CreateBlogPost } from './CreateBlogPost';
 import { Map } from './map';
 import { EventPost } from './EventPost';
 import { Newsletter } from './Newsletter';
@@ -33,9 +32,15 @@ import { AdminDashboard } from '../pages/admin/AdminDashboard';
 import { ManageAccountsPage } from '../pages/admin/ManageAccountsPage';
 import { ManageBlogPage } from '../pages/admin/ManageBlogPage';
 import { ManageEventsPage } from '../pages/admin/ManageEventsPage';
+import { AddBlogPost } from '../pages/admin/AddBlogPost';
+import { EditBlogPost } from '../pages/admin/EditBlogPost';
+import { AddAccount } from '../pages/admin/AddAccount';
+import { EditAccount } from '../pages/admin/EditAccount';
+import { AddEvent } from '../pages/admin/AddEvent';
+import { EditEvent } from '../pages/admin/EditEvent';
 
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
-    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, CreateBlogPost, Map, EventPost, Newsletter, SignUpPage, AdminSidebar,
-    AdminDashboard, ManageAccountsPage, ManageBlogPage, ManageEventsPage
+    Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, Map, EventPost, Newsletter, SignUpPage, AdminSidebar,
+    AdminDashboard, ManageAccountsPage, ManageBlogPage, ManageEventsPage, AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent
 };

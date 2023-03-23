@@ -130,6 +130,12 @@ button:focus {
     background: #fff;
   }
 
+
+
+.underline {
+    text-decoration: underline;
+}
+
 /*CUSTOM STYLING ADDED BY KV6002 TEAM END*/
 
 .uppercase {
@@ -553,75 +559,122 @@ p {
 }
 
 .os-btn-4 {
-  position: relative;
-  display: inline-block;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 600;
-  height: 50px;
-  line-height: 46px;
-  padding: 0 42px;
-  border: 2px solid #323232;
-  color: #323232;
-  background: transparent;
-  z-index: 1;
-  font-size: 12px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    height: 40px;
+    line-height: 36px;
+    padding: 0 10px;
+    border: 2px solid #34A57B;
+    color: #34A57B;
+    background: #fff;
+    z-index: 1;
+    font-size: 14px;
 }
 .os-btn-4 span {
-  color: #bc8246;
+    color: #34A57B;
 }
 .os-btn-4::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background-color: #8a8f6a;
-  z-index: -1;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #34A57B;
+    z-index: -1;
 }
 .os-btn-4:hover {
-  color: #ffffff;
-  border-color: #8a8f6a;
-}
+    color: #fff;
+    border-color: #34A57B;
+    }
 .os-btn-4:hover::after {
   height: 100%;
 }
 .os-btn-4:hover span {
-  color: #ffffff;
+    color: #34A57B;
 }
 
+
+
+.os-btn-warning {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    height: 40px;
+    line-height: 36px;
+    padding: 0 10px;
+    border: 2px solid #b11919;
+    color: #b11919;
+    background: #fff;
+    z-index: 1;
+    font-size: 14px;
+}
+
+.os-btn-warning span {
+    color: #b11919;
+}
+
+.os-btn-warning::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #34A57B;
+    z-index: -1;
+}
+
+.os-btn-warning:hover {
+    color: #fff;
+    border-color: #b11919;
+}
+
+.os-btn-warning:hover::after {
+    height: 100%;
+}
+
+.os-btn-warning:hover span {
+    color: #b11919;
+}
+
+
 .os-btn-5 {
-  position: relative;
-  display: inline-block;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 600;
-  height: 50px;
-  line-height: 46px;
-  padding: 0 42px;
-  border: 2px solid #ebebeb;
-  color: #ffffff;
-  background: transparent;
-  z-index: 1;
-  font-size: 12px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    height: 50px;
+    line-height: 46px;
+    padding: 0 22px;
+    border: 2px solid #34A57B;
+    color: #000;
+    background: transparent;
+    z-index: 1;
+    font-size: 13px;
 }
 .os-btn-5 span {
   color: #F4B908;
 }
 .os-btn-5::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background-color: #8a8f6a;
-  z-index: -1;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #34A57B;
+    z-index: -1;
 }
 .os-btn-5:hover {
-  color: #ffffff;
-  border-color: #8a8f6a;
+    color: #ffffff;
+    border-color: #34A57B;
 }
 .os-btn-5:hover::after {
   height: 100%;
@@ -995,6 +1048,10 @@ p {
 /*----------------------------------------*/
 /*CUSTOM STYLING ADDED BY KV6002 TEAM*/
 /*----------------------------------------*/
+.custom-dropdown {
+    width: auto;
+    min-width: 150px;
+}
 
 .social-bg-colour {
     background-color: #000;

@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
-    BlogPost, DemandsPage, MissionPage, AdminDashboard,
-    Footer, Header, ScrollUpButton, EventPost, SignUpPage
+    BlogPost, DemandsPage, MissionPage, AdminDashboard, ManageEventsPage, ManageBlogPage, ManageAccountsPage, EventPost, SignUpPage,
+    AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent
 
 } from "./components/index.js";
 import { CartProvider } from "./CartContext.js";
@@ -38,11 +38,17 @@ function App() {
                     <Route path="/about-us/our-demands" element={<PublicLayout><DemandsPage /></PublicLayout>} />
                     <Route path="/about-us/mission-statement" element={<PublicLayout><MissionPage /></PublicLayout>} />
                     <Route path="/cart" element={<PublicLayout><CartPage /></PublicLayout>} />
-
+                   
                     <Route path="/admin" element={isAdmin ? (<AdminLayout><AdminDashboard /></AdminLayout>) : (<Navigate to="/login" replace />)} />
-                    <Route path="/admin/manage/events" element={isAdmin ? (<AdminLayout><AdminDashboard /></AdminLayout>) : (<Navigate to="/login" replace />)} />
-                    <Route path="/admin/manage/blog" element={isAdmin ? (<AdminLayout><AdminDashboard /></AdminLayout>) : (<Navigate to="/login" replace />)} />
-                    <Route path="/admin/manage/accounts" element={isAdmin ? (<AdminLayout><AdminDashboard /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/events" element={isAdmin ? (<AdminLayout><ManageEventsPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/events/add" element={isAdmin ? (<AdminLayout><AddEvent /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/events/edit/:id" element={isAdmin ? (<AdminLayout><EditEvent /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/blog" element={isAdmin ? (<AdminLayout><ManageBlogPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/blog/add" element={isAdmin ? (<AdminLayout><AddBlogPost /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/blog/edit/:id" element={isAdmin ? (<AdminLayout><EditBlogPost /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/accounts" element={isAdmin ? (<AdminLayout><ManageAccountsPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/accounts/add" element={isAdmin ? (<AdminLayout><AddAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/accounts/edit:id" element={isAdmin ? (<AdminLayout><EditAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                 </Routes>
             </CartProvider>
         </div>
