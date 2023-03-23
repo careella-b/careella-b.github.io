@@ -62,7 +62,7 @@ function CartCard(props) {
                                 <Row className="cart-btn-row">
                                     <div className="text-center">
                                             <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn cart-btn"> +</button>
-                                            <input value={eventQuantity} type="number" id="typeNumber" className="form-control cart-quantity" />
+                                            <input value={eventQuantity} readOnly type="number" id="typeNumber" className="form-control cart-quantity" />
                                             <button onClick={() => cart.removeOneFromCart(event.id)} className="secondary-btn cart-btn"> -</button>
                                     </div>
                                 </Row>
@@ -74,7 +74,7 @@ function CartCard(props) {
                                         <p className="cart-total">SUB-TOTAL : £{(event.price*eventQuantity).toFixed(2)}</p>
                             </Col>
                         </Row>
-                        <hr class="hr cart-hr" />
+                        <hr className="hr cart-hr" />
                     </div>
         );
         

@@ -15,7 +15,7 @@ function CartPage() {
     const cart = useContext(CartContext);
     const totalCost = cart.getTotalCost();
 
-    let cartList = cart.items.map((event) => <div>
+    let cartList = cart.items.map((event) => <div key = {event.id}>
         <CartCard id  = {event.id}/>
     </div>
     );
@@ -35,7 +35,7 @@ function CartPage() {
                     <div className="container events-container">
                         {cartList}
                         <p className="cart-total">TOTAL : £{totalCost}</p>
-                        <hr class="hr cart-hr" />
+                        <hr className="hr cart-hr" />
                         <div className="text-center">
                             <button className="secondary-btn" onClick={checkout}>PRODEED TO CHECKOUT</button>
                         </div>
