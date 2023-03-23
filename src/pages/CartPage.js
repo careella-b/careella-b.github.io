@@ -31,7 +31,7 @@ function CartPage() {
             bottomText="MY CART"
             bgClass="homepageBg" />
             <section className="slider__area event-bg-colour">
-                {totalInCart != 0 &&
+                {totalInCart !== 0 &&
                     <div className="container events-container">
                         {cartList}
                         <p className="cart-total">TOTAL : £{totalCost}</p>

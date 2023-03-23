@@ -1,5 +1,5 @@
 import {createContext, useState, useEffect} from 'react';
-import { db, storage } from './Firebase';
+import { db } from './Firebase';
 import { collection, getDocs } from "firebase/firestore";
 
 export const CartContext = createContext({
@@ -27,7 +27,7 @@ export function CartProvider({children}) {
             setEvents(eventsData);
         }
         fetchEvents();
-    }, [storage]);
+    }, );
 
     useEffect(() => {
         localStorage.cart = JSON.stringify(cartEvents);
@@ -72,7 +72,7 @@ export function CartProvider({children}) {
     function removeOneFromCart(id) {
         const quantity = getEventQuantity(id);
 
-        if(quantity == 1){
+        if(quantity === 1){
             deleteFromCart(id);
         } else {
             setCartEvents(
@@ -90,7 +90,7 @@ export function CartProvider({children}) {
         setCartEvents (
             cartEvents =>
             cartEvents.filter(currentEvent => {
-                return currentEvent.id != id;
+                return currentEvent.id !== id;
             })
         )
     }
@@ -98,7 +98,7 @@ export function CartProvider({children}) {
     function getTotalCost() {
         if(events && events.length > 0){
             let totalCost = 0;
-            cartEvents.map((cartItem) => {
+            cartEvents.forEach((cartItem) => {
             const eventData = events.find(event => event.id === cartItem.id);
             totalCost += (eventData.price * cartItem.quantity);
             });
@@ -109,7 +109,7 @@ export function CartProvider({children}) {
 
     function getTotalInCart() {
         let totalEvents = 0;
-        cartEvents.map((cartItem) => {
+        cartEvents.forEach((cartItem) => {
             totalEvents += (cartItem.quantity);
         });
         return totalEvents;
