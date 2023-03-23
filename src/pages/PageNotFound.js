@@ -6,9 +6,9 @@
 
 function PageNotFound() {
     return (
-        <div>
-            <h1>Page Not Found</h1>
-
+        <div className="pt-30 pl-20 pb-30">
+            <p className="black-color">Page Not Found.</p>
+            <a href='/' className="black-color underline">Click here to return home</a>
         </div>
     );
 }
