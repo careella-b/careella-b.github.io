@@ -54,7 +54,7 @@ function EventPost() {
                     <div className="container events-container">
                         <Row className="event-row-1">
                             <Col>
-                                <h1>{event.event_title}</h1>
+                                <h1 className="event-title">{event.event_title}</h1>
                                 <img
                                     src={event.event_image_url}
                                     className="img-fluid event-img"

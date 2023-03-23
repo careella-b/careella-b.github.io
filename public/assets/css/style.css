@@ -1285,6 +1285,9 @@ input[type=number] {
   padding-left: 10px;
 }
 
+.event-title {
+  font-size: 2rem;;
+}
 
 /*----------------------------------------*/
 /*  1.5. ALL BACKGROUNDS
