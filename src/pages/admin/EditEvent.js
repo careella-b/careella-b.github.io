@@ -32,7 +32,8 @@ function EditEvent() {
             setVenue(eventData.venue);
             setAgeRestriction(eventData.age_restriction);
             setAccessibility(eventData.accessibility);
-            setEventDate(eventData.event_date.toDate().toISOString().slice(0, 10));
+            setEventDate(formatDate(eventData.event_date));
+
         };
         fetchEvent();
     }, [id]);
@@ -73,19 +74,6 @@ function EditEvent() {
         setEventDate(e.target.value);
     };
 
-    function formatDate(timestamp) {
-
-        const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
-
-        const dateString = date.toLocaleDateString("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
-
-        return dateString;
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -106,6 +94,19 @@ function EditEvent() {
             console.error("Error updating document: ", error);
         }
     };
+
+    function formatDate(timestamp) {
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    }
 
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">

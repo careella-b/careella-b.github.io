@@ -40,6 +40,35 @@ function EventPost() {
         return null; // or display a loading spinner
     }
 
+    function formatDate(timestamp) {
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
+
+        const ordinalSuffix = (n) => {
+            const s = ["th", "st", "nd", "rd"];
+            const v = n % 100;
+            return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        };
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+
+        const formattedDate = date.toLocaleDateString('en-GB', options);
+        const dayOfMonth = date.getDate();
+        const dayWithOrdinal = ordinalSuffix(dayOfMonth);
+
+        return formattedDate.replace(dayOfMonth, dayWithOrdinal);
+    }
+
+
     const eventQuantity = cart.getEventQuantity(event.id);
     console.log(eventQuantity);
     console.log(cart.items);
@@ -65,7 +94,7 @@ function EventPost() {
                                 <div className="event-content text-center">
                                     <h2 className="event-details-title">EVENT DETAILS</h2>
                                     <div className="text-left event-details-text-container">
-                                        <p className="event-details-text">DATE: {event.event_date}</p>
+                                    <p className="event-details-text">DATE: {formatDate(event.event_date)}</p>
                                         <p className="event-details-text">VENUE: {event.venue}</p>
                                         <p className="event-details-text">PRICE: £{event.price}</p>
                                         <p className="event-details-text">STARTS: {event.start_time}</p>

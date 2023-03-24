@@ -31,7 +31,6 @@ function AddEvent() {
                 start_time: startTime,
                 venue,
             });
-            // Reset form fields
             setEventTitle("");
             setEventDescription("");
             setAccessibility("");
@@ -48,6 +47,18 @@ function AddEvent() {
         }
     };
 
+    function formatDate(timestamp) {
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    }
 
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">

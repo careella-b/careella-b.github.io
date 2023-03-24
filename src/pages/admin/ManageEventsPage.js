@@ -73,6 +73,19 @@ function ManageEventsPage() {
         }
     }
 
+    function formatDate(timestamp) {
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    }
+
     return (
         <div className="pl-50 pr-50 pt-50">
             <div className="d-flex align-items-center mb-4">
@@ -131,7 +144,7 @@ function ManageEventsPage() {
                             <tr key={event.id}>
                                 <td>{event.id}</td>
                                 <td>{event.event_title}</td>
-                                <td>{event.event_date}</td>
+                                <td>{formatDate(event.event_date)}</td>
                                 <td>{event.start_time}</td>
                                 <td>{event.end_time}</td>
                                 <td>{event.accessibility}</td>
