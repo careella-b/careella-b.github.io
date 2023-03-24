@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { collection, setDoc, serverTimestamp } from "firebase/firestore";
+import { collection, setDoc, doc, Timestamp } from "firebase/firestore";
 import { db } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -9,22 +9,34 @@ function AddAccount() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [adminFlag, setAdminFlag] = useState(false);
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const navigate = useNavigate();
+
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const docRef = await setDoc(collection(db, "accounts"), {
+            const docRef = await setDoc(doc(collection(db, "accounts")), {
                 first_name: firstName,
                 last_name: lastName,
                 email,
                 phone,
                 admin_flag: adminFlag,
-                account_created: serverTimestamp(),
+                account_created: Timestamp.now(),
             });
-
-            // Reset form fields
             setFirstName("");
             setLastName("");
             setEmail("");
@@ -37,9 +49,11 @@ function AddAccount() {
         }
     };
 
+
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">
             <h3 className="black-color pb-30">Add Account</h3>
+            {renderMessage()}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>

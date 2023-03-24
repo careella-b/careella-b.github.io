@@ -9,6 +9,8 @@ function EditBlogPost() {
     const [postBody, setPostBody] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState("");
     const [author, setAuthor] = useState("");
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -38,6 +40,18 @@ function EditBlogPost() {
         fetchPost();
     }, [id]);
 
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
+
     const handleTitleChange = (e) => {
         setPostTitle(e.target.value);
     };
@@ -64,9 +78,16 @@ function EditBlogPost() {
                 category_id: selectedCategoryId,
                 author,
             });
-            navigate("/admin/blog");
+            setMessage("Blog post updated successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/blog")], 5000);
+
+
         } catch (error) {
-            console.error("Error updating document: ", error);
+            console.error("Error updating blog post: ", error);
+            setMessage("Error updating blog post: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
 
@@ -120,9 +141,10 @@ function EditBlogPost() {
                         onChange={handleAuthorChange}
                     />
                 </div>
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );

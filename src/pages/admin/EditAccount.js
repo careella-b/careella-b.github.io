@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, getDoc, serverTimestamp, doc, updateDoc } from "firebase/firestore";
+import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../Firebase";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -8,7 +8,11 @@ function EditAccount() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [accountCreated, setAccountCreated] = useState("");
+    const [adminFlag, setAdminFlag] = useState(false);
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -21,10 +25,22 @@ function EditAccount() {
             setLastName(accountData.last_name);
             setEmail(accountData.email);
             setPhone(accountData.phone);
-            setAccountCreated(accountData.account_created.toDate().toISOString().slice(0, -8));
+            setAdminFlag(accountData.admin_flag);
         };
         fetchAccount();
     }, [id]);
+
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
@@ -42,6 +58,10 @@ function EditAccount() {
         setPhone(e.target.value);
     };
 
+    const handleAdminChange = (e) => {
+        setAdminFlag(e.target.checked);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -50,17 +70,26 @@ function EditAccount() {
                 first_name: firstName,
                 last_name: lastName,
                 email: email,
-                phone: phone
+                phone: phone,
+                admin_flag: adminFlag
             });
-            navigate("/admin/accounts");
+            setMessage("Account updated successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/accounts")] , 5000);
+
+            
         } catch (error) {
-            console.error("Error updating document: ", error);
+            console.error("Error updating account: ", error);
+            setMessage("Error updating account: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
 
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">
             <h3 className="black-color pb-30">Edit Account</h3>
+            
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
@@ -102,19 +131,20 @@ function EditAccount() {
                         onChange={handlePhoneChange}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="accountCreated">Account Created</label>
+                <div className="form-group d-flex flex-column">
+                    <label htmlFor="adminFlag">Is This an Admin Account?</label>
                     <input
-                        type="text"
-                        className="form-control"
-                        id="accountCreated"
-                        value={new Date(accountCreated.seconds * 1000).toLocaleString()}
-                        disabled
+                        type="checkbox"
+                        className="form-control align-items-left"
+                        id="adminFlag"
+                        checked={adminFlag}
+                        onChange={handleAdminChange}
                     />
                 </div>
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );

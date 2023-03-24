@@ -14,6 +14,8 @@ function EditEvent() {
     const [ageRestriction, setAgeRestriction] = useState(false);
     const [accessibility, setAccessibility] = useState(false);
     const [eventDate, setEventDate] = useState("");
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -37,6 +39,18 @@ function EditEvent() {
         };
         fetchEvent();
     }, [id]);
+
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const handleTitleChange = (e) => {
         setEventTitle(e.target.value);
@@ -89,24 +103,18 @@ function EditEvent() {
                 accessibility: accessibility,
                 age_restriction: ageRestriction,
             });
-            navigate("/admin/events");
+            setMessage("Event updated successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/events")], 5000);
+
+
         } catch (error) {
-            console.error("Error updating document: ", error);
+            console.error("Error updating event: ", error);
+            setMessage("Error updating event: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
-
-    function formatDate(timestamp) {
-        let date;
-        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
-            date = new Date(timestamp.seconds * 1000);
-        } else {
-            date = new Date(timestamp);
-        }
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${day}-${month}-${year}`;
-    }
 
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">
@@ -131,6 +139,24 @@ function EditEvent() {
                         value={eventDescription}
                         onChange={handleDescriptionChange}
                     ></textarea>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="accessibility">Accessibility</label>
+                    <textarea
+                        className="form-control"
+                        id="accessibility"
+                        value={accessibility}
+                        onChange={handleAccessibilityChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="ageRestriction">Age Restriction</label>
+                    <textarea
+                        className="form-control"
+                        id="ageRestriction"
+                        value={ageRestriction}
+                        onChange={handleAgeRestrictionChange}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="eventDate">Date</label>
@@ -163,16 +189,6 @@ function EditEvent() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="venue">Venue</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="venue"
-                        value={venue}
-                        onChange={handleVenueChange}
-                    />
-                </div>
-                <div className="form-group">
                     <label htmlFor="price">Price</label>
                     <input
                         type="number"
@@ -183,27 +199,20 @@ function EditEvent() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="ageRestriction">Age Restriction</label>
-                    <textarea
+                    <label htmlFor="venue">Venue</label>
+                    <input
+                        type="text"
                         className="form-control"
-                        id="ageRestriction"
-                        value={ageRestriction}
-                        onChange={handleAgeRestrictionChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="accessibility">Accessibility</label>
-                    <textarea
-                        className="form-control"
-                        id="accessibility"
-                        value={accessibility}
-                        onChange={handleAccessibilityChange}
+                        id="venue"
+                        value={venue}
+                        onChange={handleVenueChange}
                     />
                 </div>
 
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );

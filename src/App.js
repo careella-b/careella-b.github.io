@@ -48,7 +48,7 @@ function App() {
                     <Route path="/admin/blog/edit/:id" element={isAdmin ? (<AdminLayout><EditBlogPost /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/accounts" element={isAdmin ? (<AdminLayout><ManageAccountsPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/accounts/add" element={isAdmin ? (<AdminLayout><AddAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
-                    <Route path="/admin/accounts/edit:id" element={isAdmin ? (<AdminLayout><EditAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
+                    <Route path="/admin/accounts/edit/:id" element={isAdmin ? (<AdminLayout><EditAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                 </Routes>
             </CartProvider>
         </div>
