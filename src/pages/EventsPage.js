@@ -19,9 +19,16 @@ function EventsPage() {
       const querySnapshot = await getDocs(collection(db, "events"));
       const eventsData = await Promise.all(querySnapshot.docs.map(async (doc) => {
         const eventData = { id: doc.id, ...doc.data() };
-        const files = await listAll(ref(storage, 'events'));
-        const eventImageFile = files.items.find(item => item.name === `${eventData.id}.jpg`);
-        const imageUrl = await getDownloadURL(eventImageFile);
+          const files = await listAll(ref(storage, 'events'));
+          let imageUrl = null;
+          const eventImageFile = files.items.find(item => item.name === `${eventData.id}.jpg`);
+          if (eventImageFile) {
+             imageUrl = await getDownloadURL(eventImageFile);
+
+          } else {
+              imageUrl = process.env.PUBLIC_URL + "/assets/img/events/default.jpg";
+          }
+        
         return { ...eventData, event_image_url: imageUrl };
       }));
       setEvents(eventsData);

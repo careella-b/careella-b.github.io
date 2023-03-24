@@ -50,8 +50,8 @@ function AddEvent() {
 
 
     return (
-        <div className="pl-50 pr-50 pt-50">
-            <h3 className="black-color">Add Event</h3>
+        <div className="container pl-50 pr-50 pt-50 pb-50">
+            <h3 className="black-color pb-30">Add Event</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="eventTitle">Event Title</label>

@@ -61,12 +61,9 @@ function AddBlogPost() {
         }
     };
 
-
-    
-
     return (
-        <div className="pl-50 pr-50 pt-50">
-            <h3 className="black-color">Add Blog Post</h3>
+        <div className="container pl-50 pr-50 pt-50 pb-50">
+            <h3 className="black-color pb-30">Add Blog Post</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="postTitle">Title</label>

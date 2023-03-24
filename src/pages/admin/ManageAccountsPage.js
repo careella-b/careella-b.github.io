@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -11,6 +11,8 @@ function ManageAccountsPage() {
     const [accounts, setAccounts] = useState([]);
     const [sortOption, setSortOption] = useState("date");
     const [sortOrder, setSortOrder] = useState("asc");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAccounts = async () => {
@@ -61,6 +63,23 @@ function ManageAccountsPage() {
         return dateString;
     }
 
+    const addAccount = async () => {
+        navigate("/admin/accounts/add");
+    }
+
+    const editAccount = async (accountId) => {
+        navigate(`/admin/accounts/edit/${accountId}`);
+    }
+
+    const deleteAccount = async (accountId) => {
+        try {
+            await deleteDoc(doc(db, "accounts", accountId));
+            setAccounts(accounts.filter(account => account.id !== accountId));
+        } catch (error) {
+            console.error("Error removing entry: ", error);
+        }
+    }
+
     return (
             <div className="pl-50 pr-50 pt-50">
                 <div className="d-flex align-items-center mb-4">
@@ -91,7 +110,7 @@ function ManageAccountsPage() {
                             <option value="desc">Descending</option>
                         </select>
                     </div>
-                    <button className="os-btn-5">
+                <button className="os-btn-5" onClick={() => addAccount()}>
                         + Add Account
                     </button>
                 </div>
@@ -126,7 +145,7 @@ function ManageAccountsPage() {
                                         <OverlayTrigger
                                             placement="bottom"
                                             overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
-                                            <Link to={`/admin/accounts/edit/${account.id}`} className="os-btn-4 mr-2">
+                                            <Link to={`/admin/accounts/edit/${account.id}`} className="os-btn-4 mr-2" onClick={() => editAccount(account.id)}>
                                                 <FontAwesomeIcon icon={faPenToSquare} />
                                             </Link>
                                         </OverlayTrigger>
@@ -134,7 +153,7 @@ function ManageAccountsPage() {
                                         <OverlayTrigger
                                             placement="bottom"
                                             overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
-                                            <button className="os-btn-warning">
+                                            <button className="os-btn-warning" onClick={() => deleteAccount(account.id)}>
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
                                         </OverlayTrigger>

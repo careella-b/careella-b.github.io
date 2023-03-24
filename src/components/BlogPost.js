@@ -80,7 +80,7 @@ function BlogPost() {
         return dateString;
     }
 
-    const suggestedPosts = allPosts.filter(post => post.id !== id);
+    const suggestedPosts = allPosts.filter(post => post.id !== id).slice(0, 3);
 
     return (
         <section className="blog__area pt-5 pb-5">
@@ -90,8 +90,9 @@ function BlogPost() {
                         <div className="postbox__title mb-4">
                             <h2 className="black-color">{thisPost.postTitle}</h2>
                             <div className="blog__meta">
-                                <span>By <a href="#">{thisPost.author}</a></span><br/>
-                                <span> {formatDate(thisPost.datePosted)}</span>
+                                <span><a href="#">{thisPost.category ? thisPost.category : ''}</a></span><br/>
+                                <span>By <a href="#">{thisPost.author}</a></span>
+                                <span> &#x25CF; {formatDate(thisPost.datePosted)}</span><br/>
                             </div>
                         </div>
                         <div className="postbox__details-img mb-4">
@@ -118,7 +119,6 @@ function BlogPost() {
                                                     <Link to={`/blog/${post.id}`}><h5 className="black-color pt-10 pb-10">{post.postTitle}</h5></Link>
                                                 </h6>
                                                 <div className="rc__meta">
-                                                    <span><a href="#">{post.category ? post.category : ''}</a></span>
                                                     <Link to={`/blog/${post.id}`} className="os-btn">read more</Link>
                                                 </div>
                                             </div>

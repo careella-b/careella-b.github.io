@@ -123,6 +123,7 @@ function ManageBlogPage() {
                         <th>Post Title</th>
                         <th>Date Posted</th>
                         <th>Author</th>
+                        <th>Category</th>
                         <th>Post Body</th>
                         <th>Actions</th>
                     </tr>
@@ -136,6 +137,7 @@ function ManageBlogPage() {
                                 <td>{post.postTitle}</td>
                                 <td>{formatDate( post.datePosted )}</td>
                                 <td>{post.author}</td>
+                                <td>{post.category_id}</td>
                                 <td>{post.postBody}</td>
                                 <td >
                                     <div className="d-flex">
