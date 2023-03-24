@@ -16,7 +16,6 @@ import { useContext } from "react";
 function CartCard(props) {
     const cart = useContext(CartContext);
     const [event, setEvent] = useState(null);
-    const [eventImageURL, setEventImageURL] = useState('');
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -24,7 +23,6 @@ function CartCard(props) {
         if (eventDoc.exists()) {
           const eventImageRef = ref(storage, `events/${props.id}.jpg`);
           const imageUrl = await getDownloadURL(eventImageRef);
-          setEventImageURL(imageUrl);
           setEvent({ id: eventDoc.id, ...eventDoc.data(), event_image_url: imageUrl });
         }
     }
