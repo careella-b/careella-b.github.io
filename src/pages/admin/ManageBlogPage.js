@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -12,6 +12,7 @@ function ManageBlogPage() {
     const [sortOrder, setSortOrder] = useState("asc");
 
     const navigate = useNavigate();
+    const location = useLocation();
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -23,7 +24,7 @@ function ManageBlogPage() {
             setPosts(postsData);
         }
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     const handleSortOptionChange = (e) => {
         setSortOption(e.target.value);
@@ -48,16 +49,16 @@ function ManageBlogPage() {
     };
 
     function formatDate(timestamp) {
-
-        const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
-
-        const dateString = date.toLocaleDateString("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
-
-        return dateString;
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
     }
 
     const addPost = async () => {
@@ -76,6 +77,7 @@ function ManageBlogPage() {
             await deleteDoc(doc(db, "blogPosts", postId));
             // remove the post from the local state
             setPosts(posts.filter(post => post.id !== postId));
+            location.reload();
         } catch (error) {
             console.error("Error removing entry: ", error);
         }

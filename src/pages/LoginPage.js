@@ -32,7 +32,7 @@ function LoginPage() {
                             <div className="or-divide"></div>
                             <div className="align-items-center text-center">
                                 <p className="black-color login-box-text">New here?</p>
-                                <Link to="/signup"><a className="login-box-link black-color">Create an account</a></Link>
+                                <Link to="/signup" className="login-box-link black-color">Create an account</Link>
                             </div>
                         </form>
                     </div>

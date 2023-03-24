@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -12,6 +12,7 @@ function ManageEventsPage() {
     const [sortOption, setSortOption] = useState("date");
     const [sortOrder, setSortOrder] = useState("asc");
 
+    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function ManageEventsPage() {
             setEvents(eventsData);
         };
         fetchEvents();
-    }, []);
+    }, [events]);
 
     const handleSortOptionChange = (e) => {
         setSortOption(e.target.value);
@@ -68,6 +69,7 @@ function ManageEventsPage() {
             await deleteDoc(doc(db, "events", eventId));
             // remove the post from the local state
             setEvents(events.filter(event => eventId !== eventId));
+            location.reload();
         } catch (error) {
             console.error("Error removing entry: ", error);
         }
@@ -148,9 +150,9 @@ function ManageEventsPage() {
                                 <td>{event.start_time}</td>
                                 <td>{event.end_time}</td>
                                 <td>{event.accessibility}</td>
-                                <td>{event.age_restriction}+</td>
+                                <td>{event.age_restriction}</td>
                                 <td>{event.event_description}</td>
-                                <td>&#163;{event.price}</td>
+                                <td>{event.price}</td>
                                 <td>{event.venue}</td>
                                 <td >
                                     <div className="d-flex">
@@ -164,8 +166,8 @@ function ManageEventsPage() {
 
                                         <OverlayTrigger
                                             placement="bottom"
-                                            overlay={<Tooltip id="tooltip-top">Delete</Tooltip>} onClick={() => deleteEvent(event.id)}>
-                                            <button className="os-btn-warning">
+                                            overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
+                                            <button className="os-btn-warning" onClick={() => deleteEvent(event.id)}>
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
                                         </OverlayTrigger>

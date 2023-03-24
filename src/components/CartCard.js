@@ -65,44 +65,44 @@ function CartCard(props) {
 
 
     return (
-                    <div>
-                        <Row>
-                            <Col className="cart-col">
-                                <img
-                                    src={event.event_image_url}
-                                    className="img-fluid event-img"
-                                    alt={event.event_title}
-                                />
-                            </Col>
-                            <Col className="cart-col">
-                                <div className="text-center">
-                                    
-                                    <div className="text-left">
-                                        <p className="cartdetails-title">{event.event_title.toUpperCase()}</p>
-                                        <p className="event-details-text">DATE: {formatDate(event.event_date)}</p>
-                                        <p className="event-details-text">PRICE: £{event.price}</p>
-                                        <p className="event-details-text">STARTS: {event.start_time}</p>
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col className="cart-col">
-                                <Row className="cart-btn-row">
-                                    <div className="text-center">
-                                            <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn cart-btn"> +</button>
-                                            <input value={eventQuantity} readOnly type="number" id="typeNumber" className="form-control cart-quantity" />
-                                            <button onClick={() => cart.removeOneFromCart(event.id)} className="secondary-btn cart-btn"> -</button>
-                                    </div>
-                                </Row>
-                                <Row className="cart-btn-row">
-                                        <div>
-                                            <button onClick={() => cart.deleteFromCart(event.id)} className="secondary-btn cart-btn-del"><i className="fas fa-trash-alt"></i></button>
-                                        </div>
-                                </Row>
-                                        <p className="cart-total">SUB-TOTAL : £{(event.price*eventQuantity).toFixed(2)}</p>
-                            </Col>
-                        </Row>
-                        <hr className="hr cart-hr" />
+        <div>
+            <Row>
+                <Col className="cart-col">
+                    <img
+                        src={event.event_image_url}
+                        className="img-fluid event-img"
+                        alt={event.event_title}
+                    />
+                </Col>
+                <Col className="cart-col">
+                    <div className="text-center">
+
+                        <div className="text-left">
+                            <p className="cartdetails-title">{event.event_title.toUpperCase()}</p>
+                            <p className="event-details-text">DATE: {formatDate(event.event_date)}</p>
+                            <p className="event-details-text">PRICE: £{event.price}</p>
+                            <p className="event-details-text">STARTS: {event.start_time}</p>
+                        </div>
                     </div>
+                </Col>
+                <Col className="cart-col">
+                    <Row className="cart-btn-row">
+                        <div className="text-center">
+                            <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn cart-btn"> +</button>
+                            <input value={eventQuantity} readOnly type="number" id="typeNumber" className="form-control cart-quantity" />
+                            <button onClick={() => cart.removeOneFromCart(event.id)} className="secondary-btn cart-btn"> -</button>
+                        </div>
+                    </Row>
+                    <Row className="cart-btn-row">
+                        <div>
+                            <button onClick={() => cart.deleteFromCart(event.id)} className="secondary-btn cart-btn-del"><i className="fas fa-trash-alt"></i></button>
+                        </div>
+                    </Row>
+                    <p className="cart-total">SUB-TOTAL : £{(event.price * eventQuantity).toFixed(2)}</p>
+                </Col>
+            </Row>
+            <hr className="hr cart-hr" />
+        </div>
         );
         
 }

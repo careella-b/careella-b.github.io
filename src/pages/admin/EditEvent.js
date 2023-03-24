@@ -32,7 +32,7 @@ function EditEvent() {
             setVenue(eventData.venue);
             setAgeRestriction(eventData.age_restriction);
             setAccessibility(eventData.accessibility);
-            setEventDate(formatDate(eventData.event_date));
+            setEventDate(new Date(eventData.event_date));
 
         };
         fetchEvent();

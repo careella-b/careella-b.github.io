@@ -40,16 +40,31 @@ function BlogPage() {
 
 
     function formatDate(timestamp) {
+        let date;
+        if (typeof timestamp === 'object' && 'seconds' in timestamp) {
+            date = new Date(timestamp.seconds * 1000);
+        } else {
+            date = new Date(timestamp);
+        }
 
-        const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
+        const ordinalSuffix = (n) => {
+            const s = ["th", "st", "nd", "rd"];
+            const v = n % 100;
+            return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        };
 
-        const dateString = date.toLocaleDateString("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
 
-        return dateString;
+        const formattedDate = date.toLocaleDateString('en-GB', options);
+        const dayOfMonth = date.getDate();
+        const dayWithOrdinal = ordinalSuffix(dayOfMonth);
+
+        return formattedDate.replace(dayOfMonth, dayWithOrdinal);
     }
 
     return (

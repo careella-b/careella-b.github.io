@@ -26,7 +26,7 @@ function AddEvent() {
                 accessibility,
                 age_restriction: ageRestriction,
                 end_time: endTime,
-                event_date: eventDate,
+                event_date: new Date(eventDate),
                 price,
                 start_time: startTime,
                 venue,
@@ -41,7 +41,7 @@ function AddEvent() {
             setStartTime("");
             setVenue("");
 
-            navigate(`/admin/events/edit/${id}`);
+            navigate(`/admin/events`);
         } catch (error) {
             console.error("Error adding document: ", error);
         }
