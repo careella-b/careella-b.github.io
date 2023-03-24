@@ -58,7 +58,6 @@ function AddAccount() {
     return (
         <div className="container pl-50 pr-50 pt-50 pb-50">
             <h3 className="black-color pb-30">Add Account</h3>
-            {renderMessage()}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
