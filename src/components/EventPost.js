@@ -4,10 +4,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from '../Firebase';
 import { useParams } from 'react-router-dom';
 import { ImageSlider, Map, Newsletter } from "../components/index.js";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import { Alert, Row, Col, Tab, Tabs } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import { useContext } from "react";
 
@@ -22,6 +19,19 @@ function EventPost() {
     const { id } = useParams();
     const [event, setEvent] = useState(null);
     const [eventImageURL, setEventImageURL] = useState('');
+    const [message, setMessage] = useState("");
+
+    const addToCart = () => {
+    
+        cart.addOneToCart(event.id);
+
+        setMessage("Event sucessfully added to cart");
+       
+        setTimeout(() => {
+          setMessage("");
+        }, 900);
+    
+      };
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -70,8 +80,6 @@ function EventPost() {
 
 
     const eventQuantity = cart.getEventQuantity(event.id);
-    console.log(eventQuantity);
-    console.log(cart.items);
 
     return (
           <><ImageSlider
@@ -93,6 +101,7 @@ function EventPost() {
                             <Col>
                                 <div className="event-content text-center">
                                     <h2 className="event-details-title">EVENT DETAILS</h2>
+                                    {message && <Alert className="alert-success">{message}</Alert>}
                                     <div className="text-left event-details-text-container">
                                     <p className="event-details-text">DATE: {formatDate(event.event_date)}</p>
                                         <p className="event-details-text">VENUE: {event.venue}</p>
@@ -100,7 +109,7 @@ function EventPost() {
                                         <p className="event-details-text">STARTS: {event.start_time}</p>
                                         <p className="event-details-text">FINISHES: {event.end_time}</p>
                                         <p className="event-details-text">AGE RESTRICTION: {event.age_restriction}</p>
-                                        <button onClick={() => cart.addOneToCart(event.id)} className="secondary-btn"> ADD TO CART</button>
+                                        <button onClick={() => addToCart()} className="secondary-btn"> ADD TO CART</button>
                                     </div>
                                 </div>
                             </Col>
