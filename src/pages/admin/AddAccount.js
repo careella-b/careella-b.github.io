@@ -31,7 +31,7 @@ function AddAccount() {
             setPhone("");
             setAdminFlag(false);
 
-            navigate(`/admin/accounts/edit/${docRef.id}`);
+            navigate(`/admin/accounts`);
         } catch (error) {
             console.error("Error adding document: ", error);
         }

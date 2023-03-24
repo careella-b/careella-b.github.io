@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -12,7 +12,6 @@ function ManageBlogPage() {
     const [sortOrder, setSortOrder] = useState("asc");
 
     const navigate = useNavigate();
-    const location = useLocation();
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -77,7 +76,6 @@ function ManageBlogPage() {
             await deleteDoc(doc(db, "blogPosts", postId));
             // remove the post from the local state
             setPosts(posts.filter(post => post.id !== postId));
-            location.reload();
         } catch (error) {
             console.error("Error removing entry: ", error);
         }

@@ -55,7 +55,7 @@ function AddBlogPost() {
             setPostBody("");
             setSelectedCategoryId("");
             setAuthor("");
-            navigate(`/admin/blog/edit/${docRef.id}`);
+            navigate(`/admin/blog`);
         } catch (error) {
             console.error("Error adding document: ", error);
         }
