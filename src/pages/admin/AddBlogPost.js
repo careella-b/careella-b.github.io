@@ -9,6 +9,8 @@ function AddBlogPost() {
     const [postBody, setPostBody] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState("");
     const [author, setAuthor] = useState("");
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const navigate = useNavigate();
 
@@ -23,6 +25,18 @@ function AddBlogPost() {
         };
         fetchCategories();
     }, []);
+
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const handleTitleChange = (e) => {
         setPostTitle(e.target.value);
@@ -55,9 +69,15 @@ function AddBlogPost() {
             setPostBody("");
             setSelectedCategoryId("");
             setAuthor("");
-            navigate(`/admin/blog`);
+            setMessage("Blog post added successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/blog")], 5000);
+
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error("Error adding blog post: ", error);
+            setMessage("Error adding blog post: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
 
@@ -111,9 +131,10 @@ function AddBlogPost() {
                         onChange={handleAuthorChange}
                     />
                 </div>
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );

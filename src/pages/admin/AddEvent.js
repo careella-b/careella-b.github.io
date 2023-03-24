@@ -13,8 +13,22 @@ function AddEvent() {
     const [price, setPrice] = useState("");
     const [startTime, setStartTime] = useState("");
     const [venue, setVenue] = useState("");
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const navigate = useNavigate();
+
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,10 +54,15 @@ function AddEvent() {
             setPrice("");
             setStartTime("");
             setVenue("");
+            setMessage("Event added successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/events")], 5000);
 
-            navigate(`/admin/events`);
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error("Error adding event: ", error);
+            setMessage("Error adding event: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
 
@@ -141,9 +160,10 @@ function AddEvent() {
                         onChange={(e) => setVenue(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );

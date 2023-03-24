@@ -42,10 +42,15 @@ function AddAccount() {
             setEmail("");
             setPhone("");
             setAdminFlag(false);
+            setMessage("Account added successfully. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/admin/accounts")], 5000);
 
-            navigate(`/admin/accounts`);
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error("Error adding account: ", error);
+            setMessage("Error adding account: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
         }
     };
 
@@ -105,9 +110,10 @@ function AddAccount() {
                         onChange={(e) => setAdminFlag(e.target.checked)}
                     />
                 </div>
-                <button type="submit" className="secondary-btn">
+                <button type="submit" className="secondary-btn mb-20">
                     Save
                 </button>
+                {renderMessage()}
             </form>
         </div>
     );
