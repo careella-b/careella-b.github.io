@@ -3,6 +3,7 @@ import { CartContext } from "../CartContext";
 import { useContext } from "react";
 import { CartCard } from '../components/CartCard';
 import { Link } from 'react-router-dom';
+import { response } from "express";
 
 
 
@@ -22,7 +23,21 @@ function CartPage() {
 
     const totalInCart = cart.getTotalInCart();
 
-    const checkout = async () => {};
+    const checkout = async () => {
+        await fetch("http://localhost:4000/checkout", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items: cart.items })
+        }).then((response) => {
+            return response.json();
+        }).then((response) => {
+            if (response.url) {
+                window.location.assign(response.url);
+            }
+        })
+    }
 
 
     return (
