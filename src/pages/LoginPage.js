@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
-import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useUserContext } from '../UserContext';
 
@@ -13,13 +12,9 @@ function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const auth = getAuth();
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
-    const auth = getAuth();
-
-
-    const navigate = useNavigate();
-
 
     const { loginUser } = useUserContext();
     const navigate = useNavigate();
@@ -38,14 +33,13 @@ function LoginPage() {
 
     const signIn = (e) => {
         e.preventDefault();
-        try {setPersistence(auth, browserSessionPersistence)
-		.then(() => {
+        try {
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 loginUser(user);
             })
-            setMessage("Login successful. You will be redirected...");
+            setMessage("Login successfull. You will be redirected...");
             setMessageType("success");
             setTimeout(() => [setMessage(""), navigate("/")], 3000);
         } catch (error) {
@@ -55,7 +49,6 @@ function LoginPage() {
                 setTimeout(() => setMessage(""), 10000);
             }
         };
-            
     
     return (
         <section className="login-area pt-100 pb-100">
@@ -93,7 +86,6 @@ function LoginPage() {
                             <div className="d-flex justify-content-center">
                                 <button className="os-btn bw-50" type="submit">Login</button>
                             </div>
-                            {renderMessage()}
                             <div className="or-divide"></div>
                             <div className="align-items-center text-center">
                                 <p className="black-color login-box-text">New here?</p>
