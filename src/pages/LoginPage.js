@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useUserContext } from '../UserContext';
@@ -13,23 +13,42 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const auth = getAuth();
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
 
     const { loginUser } = useUserContext();
+    const navigate = useNavigate();
 
+    const renderMessage = () => {
+        if (message) {
+            const messageClass = messageType === "success" ? "alert-success" : "alert-danger";
+            return (
+                <div className={`alert ${messageClass}`} role="alert">
+                    {message}
+                </div>
+            );
+        }
+        return null;
+    };
 
     const signIn = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            loginUser(user);
-            console.log("signed in");
-        })
-        .catch((error => {
-            console.log(error);
-        }))
-    }
+        try {
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                loginUser(user);
+            })
+            setMessage("Login successful. You will be redirected...");
+            setMessageType("success");
+            setTimeout(() => [setMessage(""), navigate("/")], 3000);
+        } catch (error) {
+                console.error("Error logging in: ", error);
+                setMessage("Error logging in: " + error.message);
+                setMessageType("error");
+                setTimeout(() => setMessage(""), 10000);
+            }
+        };
     
     return (
         <section className="login-area pt-100 pb-100">
@@ -54,6 +73,7 @@ function LoginPage() {
                                 value={password}
                                 onChange={(e)=> setPassword(e.target.value)}
                             />
+                            {renderMessage()}
                             <div className="login-action mb-20 fix">
                                 <span className="log-rem f-left">
                                     <input id="remember" type="checkbox" />

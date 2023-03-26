@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { CartContext } from "../CartContext";
 import { useContext } from "react";
+import { useUserContext } from "../UserContext";
 
 /**
  * Header component
@@ -15,17 +16,14 @@ import { useContext } from "react";
 
 function Header() {
 
-    const [userAuth, setUserAuth] = useState(false); // state to track user's login status
-    const [isAdmin, setisAdmin] = useState(false); // state to track user's admin status
-
-    // function to handle user logout
-    const handleLogout = () => {
-        // TODO: implement logout logic here
-        setUserAuth(false);
-    }
-
     const cart = useContext(CartContext);
     const totalInCart = cart.getTotalInCart();
+
+    const { user, isAdmin, logoutUser } = useUserContext();
+
+    const handleLogout = () => {
+        logoutUser();
+    };
 
     return (
         <Navbar id="header-sticky" className="header__area grey-bg navbar-dark align-items-center">
@@ -55,15 +53,15 @@ function Header() {
             </Nav>
 
             
-            {userAuth ? (
+            {user ? (
                 <Nav className="container col-xl-2 col-lg-2 col-md-3 col-sm-3 header__action">
                     <div className="d-flex justify-content-left">
                         <i className="align-self-center fa-solid fa-circle-user navIcon"></i>
                         <NavDropdown title="" id="basic-nav-dropdown" className="transition-3 has-dropdown">
-                            {isAdmin && <Link to="/admin-portal"><NavDropdown.Item className="submenu transition-3" as="span">Admin Portal</NavDropdown.Item></Link>}
+                            {isAdmin && <Link to="/admin"><NavDropdown.Item className="submenu transition-3" as="span">Admin Portal</NavDropdown.Item></Link>}
                             <Link to="/profile"><NavDropdown.Item className="submenu transition-3" as="span">Profile</NavDropdown.Item></Link>
                             <Link to="/account"><NavDropdown.Item className="submenu transition-3" as="span">My Account</NavDropdown.Item></Link>
-                            <Link to="/logout"><NavDropdown.Item className="submenu transition-3" onClick={handleLogout} as="span">Log Out</NavDropdown.Item></Link>
+                            <Link to="/"><NavDropdown.Item className="submenu transition-3" onClick={handleLogout} as="span">Log Out</NavDropdown.Item></Link>
                         </NavDropdown>
                     </div>
                     <Link to="/cart"><Nav.Link as="span"><i className="ion-bag"></i> Cart (<span>{totalInCart}</span>)</Nav.Link></Link>

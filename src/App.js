@@ -7,23 +7,17 @@ import {
 
 } from "./components/index.js";
 import { CartProvider } from "./CartContext.js";
-import { UserProvider } from "./UserContext.js";
+import { useUserContext } from "./UserContext.js";
 import { PublicLayout } from "./PublicLayout.js";
 import { AdminLayout } from "./AdminLayout.js";
 
 function App() {
 
-    const user = {
-        role: 'admin', // This should come from auth system
-    };
-
-    const isAuthorized = user && user.role === 'user';
-    const isAdmin = user && user.role === 'admin';
+    const { isAdmin } = useUserContext();
 
     return (
         <div className="App">
             <CartProvider>
-                <UserProvider>
                 <Routes>
                     <Route index element={<PublicLayout><Homepage /></PublicLayout>} />
                     <Route path="*" element={<PublicLayout><PageNotFound /></PublicLayout>} />
@@ -53,7 +47,6 @@ function App() {
                     <Route path="/admin/accounts/add" element={isAdmin ? (<AdminLayout><AddAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/accounts/edit/:id" element={isAdmin ? (<AdminLayout><EditAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     </Routes>
-                </UserProvider>
             </CartProvider>
         </div>
     );

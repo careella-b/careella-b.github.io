@@ -48,7 +48,7 @@ function SignUpPage() {
             setPhone("");
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
-            setTimeout(() => [setMessage(""), navigate("/admin/accounts")], 3000);
+            setTimeout(() => [setMessage(""), navigate("/")], 3000);
 
         } catch (error) {
             console.error("Error creating account: ", error);
