@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { useUserContext } from '../../UserContext';
 
 /**
  * Login page displays the log-in form 
@@ -9,21 +10,12 @@ import { useState } from "react";
 
 function LoginPage() {
 
-        /*const auth = getAuth();
-            signInWithEmailAndPassword(auth, email.value, pass.value)
-            .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-        })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-        });*/
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const auth = getAuth();
+
+    const { loginUser } = useUserContext();
+
 
     const signIn = (e) => {
         e.preventDefault();
@@ -31,6 +23,7 @@ function LoginPage() {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            loginUser(user);
             console.log("signed in");
         })
         .catch((error => {

@@ -3,10 +3,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import {
     Homepage, PageNotFound, AccountPage, ProfilePage, LoginPage, BlogPage, EventsPage, ContactPage, TeamPage, CartPage,
     BlogPost, DemandsPage, MissionPage, AdminDashboard, ManageEventsPage, ManageBlogPage, ManageAccountsPage, EventPost, SignUpPage,
-    AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent
+    AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent, CheckoutPage
 
 } from "./components/index.js";
 import { CartProvider } from "./CartContext.js";
+import { UserProvider } from "./UserContext.js";
 import { PublicLayout } from "./PublicLayout.js";
 import { AdminLayout } from "./AdminLayout.js";
 
@@ -22,6 +23,7 @@ function App() {
     return (
         <div className="App">
             <CartProvider>
+                <UserProvider>
                 <Routes>
                     <Route index element={<PublicLayout><Homepage /></PublicLayout>} />
                     <Route path="*" element={<PublicLayout><PageNotFound /></PublicLayout>} />
@@ -38,6 +40,7 @@ function App() {
                     <Route path="/about-us/our-demands" element={<PublicLayout><DemandsPage /></PublicLayout>} />
                     <Route path="/about-us/mission-statement" element={<PublicLayout><MissionPage /></PublicLayout>} />
                     <Route path="/cart" element={<PublicLayout><CartPage /></PublicLayout>} />
+                    <Route path="/cart/checkout" element={<PublicLayout><CheckoutPage /></PublicLayout>} />
                    
                     <Route path="/admin" element={isAdmin ? (<AdminLayout><AdminDashboard /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/events" element={isAdmin ? (<AdminLayout><ManageEventsPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
@@ -49,7 +52,8 @@ function App() {
                     <Route path="/admin/accounts" element={isAdmin ? (<AdminLayout><ManageAccountsPage /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/accounts/add" element={isAdmin ? (<AdminLayout><AddAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
                     <Route path="/admin/accounts/edit/:id" element={isAdmin ? (<AdminLayout><EditAccount /></AdminLayout>) : (<Navigate to="/login" replace />)} />
-                </Routes>
+                    </Routes>
+                </UserProvider>
             </CartProvider>
         </div>
     );

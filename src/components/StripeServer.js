@@ -1,5 +1,5 @@
 //sk_test_51MpLseIqrbkgWvVRIsSqQ3WMu1v4ZGIqwGVG0nyVLzgcPQYAiyD6aRjgkMfLqcqM1NrYTPmBxeLLljAvD4x3aBOm001s5kNlmG
-//
+
 
 const express = require('express');
 var cors = require('cors');
@@ -10,6 +10,8 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 
+
+
 app.post("/checkout", async (req, res) => {
 
     console.log(req.body);
@@ -18,7 +20,7 @@ app.post("/checkout", async (req, res) => {
     items.forEach((item) => {
         lineItems.push(
             {
-                price: item.id
+                price: item.id,
                 quantity: item.quantity
             }
         )
@@ -37,4 +39,4 @@ app.post("/checkout", async (req, res) => {
     }));
 });
 
-app.listen(4000, () => console.log("Listening on port 4000."))
+app.listen(3000, () => console.log("Listening on port 3000."))

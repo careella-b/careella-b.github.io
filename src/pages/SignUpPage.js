@@ -2,7 +2,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { collection, setDoc, doc, Timestamp } from "firebase/firestore";
-import { db } from "../../Firebase";
+import { db } from "../Firebase";
 /**
  * Sign up page displays the sign up form to create an account 
  * 
@@ -46,7 +46,6 @@ function SignUpPage() {
             setLastName("");
             setEmail("");
             setPhone("");
-            setAdminFlag(false);
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
             setTimeout(() => [setMessage(""), navigate("/admin/accounts")], 3000);
