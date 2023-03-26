@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { useState } from "react";
 import { useUserContext } from '../UserContext';
 
@@ -16,10 +16,7 @@ function LoginPage() {
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
 
-    const auth = getAuth();
-
     const navigate = useNavigate();
-
 
     const { loginUser } = useUserContext();
 
@@ -38,21 +35,33 @@ function LoginPage() {
     const signIn = (e) => {
         e.preventDefault();
         try {
-            signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                loginUser(user);
-            })
-            setMessage("Login successfull. You will be redirected...");
+            setPersistence(auth, browserSessionPersistence)
+                .then(() => {
+                    signInWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                            // Signed in 
+                            const user = userCredential.user;
+                            loginUser(user);
+                        })
+                        .catch((error => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                        }))
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+            setMessage("Logged in successfully. You will be redirected...");
             setMessageType("success");
-            setTimeout(() => [setMessage(""), navigate("/")], 3000);
-        })} catch (error) {
-                console.error("Error logging in: ", error);
-                setMessage("Error logging in: " + error.message);
-                setMessageType("error");
-                setTimeout(() => setMessage(""), 10000);
-            }
-        };
+            setTimeout(() => [setMessage(""), navigate("/account")], 3000);
+        } catch (error) {
+            console.error("Error logging in: ", error);
+            setMessage("Error logging in: " + error.message);
+            setMessageType("error");
+            setTimeout(() => setMessage(""), 10000);
+        }
+    }
     
     return (
         <section className="login-area pt-100 pb-100">

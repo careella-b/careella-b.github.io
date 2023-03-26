@@ -13,7 +13,8 @@ import { AdminLayout } from "./AdminLayout.js";
 
 function App() {
 
-    const { isAdmin } = useUserContext();
+    //const { isAdmin } = useUserContext();
+    const  isAdmin  = true;
 
     return (
         <div className="App">

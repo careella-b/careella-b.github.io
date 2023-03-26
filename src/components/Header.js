@@ -19,7 +19,9 @@ function Header() {
     const cart = useContext(CartContext);
     const totalInCart = cart.getTotalInCart();
 
-    const { user, isAdmin, logoutUser } = useUserContext();
+    const { user, logoutUser } = useUserContext();
+
+    const  isAdmin  = true;
 
     const handleLogout = () => {
         logoutUser();
@@ -59,7 +61,7 @@ function Header() {
                         <i className="align-self-center fa-solid fa-circle-user navIcon"></i>
                         <NavDropdown title="" id="basic-nav-dropdown" className="transition-3 has-dropdown">
                             {isAdmin && <Link to="/admin"><NavDropdown.Item className="submenu transition-3" as="span">Admin Portal</NavDropdown.Item></Link>}
-                            <Link to="/profile"><NavDropdown.Item className="submenu transition-3" as="span">Profile</NavDropdown.Item></Link>
+                            
                             <Link to="/account"><NavDropdown.Item className="submenu transition-3" as="span">My Account</NavDropdown.Item></Link>
                             <Link to="/"><NavDropdown.Item className="submenu transition-3" onClick={handleLogout} as="span">Log Out</NavDropdown.Item></Link>
                         </NavDropdown>

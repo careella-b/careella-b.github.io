@@ -2,8 +2,18 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useUserContext } from "../../UserContext.js";
+import { useNavigate } from "react-router-dom";
 
 function AdminSidebar() {
+
+    const { user, logoutUser } = useUserContext();
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        navigate("/");
+    }
     return (
         <div
             className="d-flex flex-row border justify-content-between align-items-center  pr-30 pl-20 "
@@ -43,7 +53,7 @@ function AdminSidebar() {
             </div>
 
             <div className="align-self-center">
-                <a href="#" className="mr-1">
+                <a href="/" className="mr-1" onClick={handleLogout}>
                     LOG OUT
                 </a>
             </div>

@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { db } from './Firebase';
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
@@ -12,33 +12,27 @@ export const UserProvider = ({ children }) => {
     const [isAdmin, setisAdmin] = useState(false);
 
     useEffect(() => {
-        console.log(user);
-        if (user && user.email) {
-            const fetchUserDetails = async () => {
-                const usersRef = collection(db, "accounts");
-                const q = query(usersRef, where("email", " == ", user.email));
-                const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                    if (!querySnapshot.empty) {
-                        const userData = querySnapshot.docs[0];
-                        setUserDetails({ id: userData.id, ...userData.data() });
-                        setisAdmin(userData.data().isAdmin);
+        const fetchUserDetails = async () => {
+            if (user && user.email) {
+                const userDocRef = doc(db, "accounts", user.email);
+                const unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        setUserDetails({ id: docSnapshot.id, ...userData });
+                        setisAdmin(userData.isAdmin);
                     } else {
                         console.log("No user found");
                     }
                 });
 
-                return () =>
-                {
+                return () => {
                     unsubscribe();
                 };
-            };
-
+            }
             fetchUserDetails();
-        } else {
-            setUserDetails(null);
-            setisAdmin(false);
-        }
+        };
     }, [user]);
+
 
     useEffect(() => {
         const auth = getAuth();
