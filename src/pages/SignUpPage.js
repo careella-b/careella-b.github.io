@@ -2,7 +2,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { collection, setDoc, doc, Timestamp } from "firebase/firestore";
-import { db } from "../../Firebase";
+import { db } from "../Firebase";
 /**
  * Sign up page displays the sign up form to create an account 
  * 
@@ -16,6 +16,7 @@ function SignUpPage() {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
+    const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
@@ -46,10 +47,19 @@ function SignUpPage() {
             setLastName("");
             setEmail("");
             setPhone("");
-            setAdminFlag(false);
+            setPassword("");
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, email, password)
+            .then ( (userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
-            setTimeout(() => [setMessage(""), navigate("/admin/accounts")], 3000);
+            setTimeout(() => [setMessage(""), navigate("/account")], 3000);
 
         } catch (error) {
             console.error("Error creating account: ", error);
@@ -109,7 +119,7 @@ function SignUpPage() {
                             />
 
                             <label htmlFor="pass">Create Password*</label>
-                            <input id="pass" type="password" placeholder="Enter new password..." />
+                            <input id="pass" type="password" placeholder="Enter new password..." value={password} onChange={(e) => setPassword(e.target.value)} />
 
                             <label htmlFor="re-pass">Re-type Password*</label>
                             <input id="re-pass" type="password" placeholder="Re-enter new password..." />

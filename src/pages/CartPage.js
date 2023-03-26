@@ -22,7 +22,7 @@ function CartPage() {
 
     const totalInCart = cart.getTotalInCart();
 
-    const checkout = async () => {
+   const checkout = async () => {
         await fetch("http://localhost:4000/checkout", {
             method: "POST",
             headers: {
@@ -38,6 +38,29 @@ function CartPage() {
         })
     }
 
+    /*const stripePromise = loadStripe('sk_test_51MpLseIqrbkgWvVRIsSqQ3WMu1v4ZGIqwGVG0nyVLzgcPQYAiyD6aRjgkMfLqcqM1NrYTPmBxeLLljAvD4x3aBOm001s5kNlmG');
+
+    const checkout = async () => {
+        const stripe = await stripePromise;
+
+        const session = await fetch('/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items: cart.items })
+        }).then((response) => response.json());
+
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) {
+            console.error(result.error);
+        }
+    };*/
+
+    //onClick={checkout}
 
     return (
         <><ImageSlider

@@ -12,6 +12,7 @@ import { TeamPage } from '../pages/TeamPage';
 import { DemandsPage } from '../pages/DemandsPage';
 import { MissionPage } from '../pages/MissionPage';
 import { CartPage } from '../pages/CartPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
 
 
 //components
@@ -42,5 +43,6 @@ import { EditEvent } from '../pages/admin/EditEvent';
 export {
     Homepage, PageNotFound, BlogPage, ProfilePage, AccountPage, LoginPage, EventsPage, ContactPage, TeamPage, DemandsPage, MissionPage, CartPage,
     Footer, Header, ScrollUpButton, BlogPost, NoImageSlider, ImageSlider, Map, EventPost, Newsletter, SignUpPage, AdminSidebar,
-    AdminDashboard, ManageAccountsPage, ManageBlogPage, ManageEventsPage, AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent
+    AdminDashboard, ManageAccountsPage, ManageBlogPage, ManageEventsPage, AddBlogPost, EditBlogPost, AddAccount, EditAccount, AddEvent, EditEvent,
+    CheckoutPage
 };
