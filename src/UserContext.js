@@ -8,11 +8,6 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userDetails, setUserDetails] = useState('');
 
-    useEffect(() => {
-        
-        fetchUserData();
-    },[]);
-
 
     const loginUser = (userData) => {
         setUser(userData);
@@ -22,15 +17,15 @@ export const UserProvider = ({ children }) => {
         setUser(null);
     };
 
-    const getUserDetails = async () => {
+    const getUserDetails = async (email) => {
         const querySnapshot = await getDoc(doc(db, "users", email));
         if (querySnapshot.exists()) {
-            setUserData({ id: querySnapshot.id, ...querySnapshot.data() });
+            setUserDetails({ id: querySnapshot.id, ...querySnapshot.data() });
         }
     };
 
     return (
-        <UserContext.Provider value={{ user, userData, loginUser, logoutUser }}>
+        <UserContext.Provider value={{ user, userDetails, loginUser, logoutUser }}>
             {children}
         </UserContext.Provider>
     );

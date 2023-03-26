@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { useUserContext } from '../../UserContext';
+import { useUserContext } from '../UserContext';
 
 /**
  * Login page displays the log-in form 
