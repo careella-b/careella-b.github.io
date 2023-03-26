@@ -16,6 +16,7 @@ function SignUpPage() {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
+    const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
@@ -46,9 +47,20 @@ function SignUpPage() {
             setLastName("");
             setEmail("");
             setPhone("");
+            setPassword("");
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, email, password)
+            .then ( (userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
-            setTimeout(() => [setMessage(""), navigate("/")], 3000);
+            setTimeout(() => [setMessage(""), navigate("/account")], 3000);
+
 
         } catch (error) {
             console.error("Error creating account: ", error);
@@ -108,7 +120,7 @@ function SignUpPage() {
                             />
 
                             <label htmlFor="pass">Create Password*</label>
-                            <input id="pass" type="password" placeholder="Enter new password..." />
+                            <input id="pass" type="password" placeholder="Enter new password..." value={password} onChange={(e) => setPassword(e.target.value)} />
 
                             <label htmlFor="re-pass">Re-type Password*</label>
                             <input id="re-pass" type="password" placeholder="Re-enter new password..." />

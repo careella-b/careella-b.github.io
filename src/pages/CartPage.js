@@ -3,7 +3,6 @@ import { CartContext } from "../CartContext";
 import { useContext } from "react";
 import { CartCard } from '../components/CartCard';
 import { Link } from 'react-router-dom';
-//import { response } from "express";
 
 
 
@@ -20,9 +19,10 @@ function CartPage() {
         <CartCard id  = {event.id}/>
     </div>
     );
+
     const totalInCart = cart.getTotalInCart();
 
-   /* const checkout = async () => {
+   const checkout = async () => {
         await fetch("http://localhost:4000/checkout", {
             method: "POST",
             headers: {
@@ -38,7 +38,7 @@ function CartPage() {
         })
     }
 
-    const stripePromise = loadStripe('sk_test_51MpLseIqrbkgWvVRIsSqQ3WMu1v4ZGIqwGVG0nyVLzgcPQYAiyD6aRjgkMfLqcqM1NrYTPmBxeLLljAvD4x3aBOm001s5kNlmG');
+    /*const stripePromise = loadStripe('sk_test_51MpLseIqrbkgWvVRIsSqQ3WMu1v4ZGIqwGVG0nyVLzgcPQYAiyD6aRjgkMfLqcqM1NrYTPmBxeLLljAvD4x3aBOm001s5kNlmG');
 
     const checkout = async () => {
         const stripe = await stripePromise;
@@ -74,7 +74,7 @@ function CartPage() {
                         <p className="cart-total">TOTAL : £{totalCost}</p>
                         <hr className="hr cart-hr" />
                         <div className="text-center">
-                            <button className="secondary-btn" >PRODEED TO CHECKOUT</button>
+                            <button className="secondary-btn" onClick={checkout}>PRODEED TO CHECKOUT</button>
                         </div>
                     </div>}
                 {totalInCart === 0 &&
