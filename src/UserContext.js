@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { db } from './Firebase';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 const UserContext = createContext();
 
@@ -25,7 +27,8 @@ export const UserProvider = ({ children }) => {
                     }
                 });
 
-                return () => {
+                return () =>
+                {
                     unsubscribe();
                 };
             };
@@ -36,6 +39,24 @@ export const UserProvider = ({ children }) => {
             setisAdmin(false);
         }
     }, [user]);
+
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                setUser({
+                    email: firebaseUser.email,
+                    uid: firebaseUser.uid,
+                });
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     const loginUser = (userData) => {
         setUser(userData);
@@ -57,7 +78,6 @@ export const useUserContext = () => {
     if (context === undefined) {
         throw new Error('useUserContext must be used within a UserProvider');
     }
-
     return context;
 };
 
