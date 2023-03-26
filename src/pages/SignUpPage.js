@@ -59,7 +59,7 @@ function SignUpPage() {
             });
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
-            setTimeout(() => [setMessage(""), navigate("/account")], 3000);
+            setTimeout(() => [setMessage(""), navigate("/")], 3000);
 
 
         } catch (error) {
