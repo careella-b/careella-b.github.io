@@ -17,12 +17,9 @@ function LoginPage() {
     const [messageType, setMessageType] = useState("");
     const auth = getAuth();
 
-
     const navigate = useNavigate();
-
 
     const { loginUser } = useUserContext();
-    const navigate = useNavigate();
 
     const renderMessage = () => {
         if (message) {
@@ -48,7 +45,7 @@ function LoginPage() {
             setMessage("Login successful. You will be redirected...");
             setMessageType("success");
             setTimeout(() => [setMessage(""), navigate("/")], 3000);
-        } catch (error) {
+        })} catch (error) {
                 console.error("Error logging in: ", error);
                 setMessage("Error logging in: " + error.message);
                 setMessageType("error");
