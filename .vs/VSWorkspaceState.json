@@ -1,12 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\public\\assets",
+    "\\public\\assets\\img\\blog",
+    "\\public\\assets\\img\\events",
+    "\\public\\assets\\img\\logo",
     "\\src",
     "\\src\\components",
-    "\\src\\pages"
+    "\\src\\components\\admin",
+    "\\src\\pages",
+    "\\src\\pages\\admin"
   ],
-  "SelectedNode": "\\src\\pages\\CheckoutPage.js",
+  "SelectedNode": "\\src\\components\\admin\\AdminSidebar.js",
   "PreviewInSolutionExplorer": false
 }

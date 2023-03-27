@@ -19,9 +19,8 @@ function Header() {
     const cart = useContext(CartContext);
     const totalInCart = cart.getTotalInCart();
 
-    const { user, logoutUser } = useUserContext();
+    const { user, logoutUser, isAdmin } = useUserContext();
 
-    const  isAdmin  = true;
 
     const handleLogout = () => {
         logoutUser();

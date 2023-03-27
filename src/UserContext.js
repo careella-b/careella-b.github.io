@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { db } from './Firebase';
-import { onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
@@ -10,27 +10,29 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
     const [isAdmin, setisAdmin] = useState(false);
+    
 
     useEffect(() => {
         const fetchUserDetails = async () => {
-            if (user && user.email) {
-                const userDocRef = doc(db, "accounts", user.email);
-                const unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
-                    if (docSnapshot.exists()) {
-                        const userData = docSnapshot.data();
-                        setUserDetails({ id: docSnapshot.id, ...userData });
-                        setisAdmin(userData.isAdmin);
-                    } else {
-                        console.log("No user found");
-                    }
-                });
+            if (user && user.uid) {
+                const userDocRef = doc(db, "accounts", user.uid);
+                const docSnapshot = await getDoc(userDocRef);
+                if (docSnapshot.exists()) {
+                    const userData = docSnapshot.data();
+                    setUserDetails({ id: docSnapshot.id, ...userData });
+                    console.log(userData.admin_flag);
+                    setisAdmin(userData.admin_flag);
+                    console.log(userData);
 
-                return () => {
-                    unsubscribe();
-                };
+                } else {
+                    console.log("No user found");
+                }
             }
-            fetchUserDetails();
         };
+        fetchUserDetails(); 
+        console.log(isAdmin);
+        
+        
     }, [user]);
 
 

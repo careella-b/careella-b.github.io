@@ -16,7 +16,6 @@ function SignUpPage() {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
-    const [uid, setUid] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
@@ -40,21 +39,19 @@ function SignUpPage() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const firebaseUser = userCredential.user;
              
-            const docRef = await setDoc(doc(collection(db, "accounts")), {
+            const docRef = await setDoc(doc(collection(db, "accounts"), firebaseUser.uid), {
                 first_name: firstName,
                 last_name: lastName,
                 email: firebaseUser.email,
                 phone,
                 admin_flag: false,
                 account_created: Timestamp.now(),
-                uid: firebaseUser.uid,
             });
             setFirstName("");
             setLastName("");
             setEmail("");
             setPhone("");
             setPassword("");
-            setUid("");
             setMessage("Account created successfully. You will be redirected...");
             setMessageType("success");
             setTimeout(() => [setMessage(""), navigate("/")], 3000);

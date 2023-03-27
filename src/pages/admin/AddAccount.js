@@ -2,6 +2,7 @@ import { useState } from "react";
 import { collection, setDoc, doc, Timestamp } from "firebase/firestore";
 import { db } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function AddAccount() {
     const [firstName, setFirstName] = useState("");
@@ -9,6 +10,7 @@ function AddAccount() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [adminFlag, setAdminFlag] = useState(false);
+    const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
 
@@ -29,7 +31,11 @@ function AddAccount() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const docRef = await setDoc(doc(collection(db, "accounts")), {
+            const auth = getAuth();
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const firebaseUser = userCredential.user;
+
+            const docRef = await setDoc(doc(collection(db, "accounts"), firebaseUser.uid), {
                 first_name: firstName,
                 last_name: lastName,
                 email,
@@ -41,6 +47,7 @@ function AddAccount() {
             setLastName("");
             setEmail("");
             setPhone("");
+            setPassword("");
             setAdminFlag(false);
             setMessage("Account added successfully. You will be redirected...");
             setMessageType("success");
