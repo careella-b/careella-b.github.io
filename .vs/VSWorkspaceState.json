@@ -1,16 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public\\assets",
-    "\\public\\assets\\img\\blog",
-    "\\public\\assets\\img\\events",
-    "\\public\\assets\\img\\logo",
     "\\src",
     "\\src\\components",
     "\\src\\components\\admin",
     "\\src\\pages",
     "\\src\\pages\\admin"
   ],
-  "SelectedNode": "\\src\\components\\admin\\AdminSidebar.js",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }

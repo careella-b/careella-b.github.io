@@ -28,3 +28,5 @@ navigation links:
 /about-us/mission-statement - org info
 /cart - cart page with event ticket choices
 /checkout - payment for event tickets in cart 
+
+project created by SH08 

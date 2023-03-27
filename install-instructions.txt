@@ -4,8 +4,8 @@ In the command line in the project directory, you can run:
 
  `npm start`
 
-Runs the app locally
-Should run automatically. If not open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This runs the app locally.
+It should run automatically. If not open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
 
